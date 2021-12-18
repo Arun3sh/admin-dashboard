@@ -5,6 +5,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
+import { FaGrinWink } from 'react-icons/fa';
 
 export function SidemenuBar() {
 	return (
@@ -16,6 +17,12 @@ export function SidemenuBar() {
 					bgcolor: 'background.paper',
 				}}
 			>
+				<ListItem>
+					<div className="logo-heading">
+						<FaGrinWink />
+						<h3>SB ADMIN</h3>
+					</div>
+				</ListItem>
 				<ListItem>
 					<AiFillDashboard className="menu-icons" />
 					<ListItemText primary="Dashboard" />
