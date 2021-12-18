@@ -15,13 +15,15 @@ li {
 
 /* Base Style */
 .Wrapper {
-	margin: 25px;
+	margin: 15px;
 	display: flex;
 	flex-direction: row;
 }
+
+/* Side Menu Bar Style */
 .sidemenu {
-	padding: 20px;
-	width: 20%;
+	border: 1px solid;
+	width: 15%;
 }
 .menu-items {
 	list-style: none;
@@ -32,10 +34,121 @@ li {
 .menu-icons {
 	margin-right: 10px;
 }
-.content-wrapper {
-	padding: 20px;
-	width: 80%;
+.logo-heading {
+	display: flex;
+	align-items: center;
+	margin-right: 10px;
 }
+
+/* Content Wrapper Styles */
+.content-wrapper {
+	padding: 0px 20px;
+	width: 85%;
+}
+/* Header file styles */
+.content-header,
+.icon-holder,
+.user-badge {
+	display: flex;
+	align-items: center;
+}
+.search-bar {
+	display: flex;
+	align-items: center;
+	height: 50px;
+	width: 30%;
+	border: 2px solid var(--secondary);
+	border-radius: 25px;
+}
+.search-bar div {
+	width: 100%;
+}
+
+.text-field fieldset {
+	border: none;
+	outline: none;
+}
+.search-button {
+	/* background-color: var(--secondary) !important;
+	border-radius: 0px 25px 25px 0px !important; */
+	height: 50px;
+}
+/* .search-icon {
+	margin: 10px;
+} */
+.icon-holder {
+	margin-left: auto;
+}
+.user-badge {
+	margin-left: 35px;
+}
+.profile-name {
+	margin-right: 15px;
+}
+.badge {
+	margin: 10px 20px;
+}
+
+/* Maincontent styles */
+.first-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.display-report {
+	display: flex;
+	justify-content: space-between;
+	gap: 20px;
+}
+.report {
+	padding: 0px 20px;
+	width: 250px;
+	height: 100px;
+	/* box-shadow: -5px 0px 0px blue; */
+	border: 1px solid rgba(58, 59, 69, 0.15);
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+.monthly {
+	box-shadow: -5px 0px 0px #4e73df;
+}
+.monthly-heading {
+	color: #4e73df;
+}
+.annual {
+	box-shadow: -5px 0px 0px #1cc88a;
+}
+.annual-heading {
+	color: #1cc88a;
+}
+.task {
+	box-shadow: -5px 0px 0px #36b9cc;
+}
+.task-heading {
+	color: #36b9cc;
+}
+.request {
+	box-shadow: -5px 0px 0px #f6c23e;
+}
+.request-heading {
+	color: #f6c23e;
+}
+.report-heading {
+	font-size: 14px;
+}
+.report-value {
+	font-size: 20px;
+}
+.report-logo {
+	margin-left: auto;
+}
+.report-logo svg {
+	height: 30px;
+	width: 30px;
+}
+
 /* Fonts */
 
 /* Media Queries */
