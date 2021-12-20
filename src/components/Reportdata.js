@@ -1,6 +1,8 @@
 import CalendarToday from '@mui/icons-material/CalendarToday';
 import { FaDollarSign, FaRegComments } from 'react-icons/fa';
 import { BiNotepad } from 'react-icons/bi';
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
 
 export function Reportdata() {
 	return (
@@ -30,6 +32,9 @@ export function Reportdata() {
 					<div className="report-heading task-heading">TASKS</div>
 					<div className="report-value">50%</div>
 				</div>
+				<Box sx={{ width: '35%' }}>
+					<LinearProgress variant="determinate" value={50} className="progress-bar" />
+				</Box>
 				<div className="report-logo">
 					<BiNotepad />
 				</div>
