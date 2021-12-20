@@ -1,5 +1,6 @@
 import { Reportdata } from './Reportdata';
 import { PictorialData } from './PictorialData';
+import { Othercontent } from './Othercontent';
 
 export function Maincontent() {
 	return (
@@ -10,6 +11,7 @@ export function Maincontent() {
 			</div>
 			<Reportdata />
 			<PictorialData />
+			<Othercontent />
 		</div>
 	);
 }
