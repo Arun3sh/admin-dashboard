@@ -12,6 +12,7 @@ import {
 } from 'recharts';
 import IconButton from '@mui/material/IconButton';
 import { MoreVert } from '@mui/icons-material';
+import { Divider } from '@mui/material';
 
 export function PictorialData() {
 	const earningData = [
@@ -92,6 +93,7 @@ export function PictorialData() {
 						<MoreVert />
 					</IconButton>
 				</div>
+				<Divider className="pic-divider" variant="fullWidth" />
 				<ResponsiveContainer width="100%" aspect={2}>
 					<LineChart
 						data={earningData}
@@ -125,6 +127,7 @@ export function PictorialData() {
 						<MoreVert />
 					</IconButton>
 				</div>
+				<Divider className="pic-divider" variant="fullWidth" />
 				<ResponsiveContainer width="100%" aspect={1.15}>
 					<PieChart>
 						<Pie
