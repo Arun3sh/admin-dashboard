@@ -15,15 +15,26 @@ li {
 
 /* Base Style */
 .Wrapper {
-	margin: 15px;
+	/* margin: 15px; */
 	display: flex;
 	flex-direction: row;
 }
 
 /* Side Menu Bar Style */
 .sidemenu {
-	border: 1px solid;
+	background-color: #4e73df;
 	width: 18%;
+}
+.sidemenu ul {
+	color: white;
+	background-color: #4e73df;
+}
+.sidemenu ul div {
+	margin-left: 10px;
+}
+.menu-heading,
+.sidemenu svg {
+	color: rgba(255, 255, 255, 0.4) !important;
 }
 .menu-items {
 	list-style: none;
@@ -46,6 +57,9 @@ li {
 	width: 82%;
 }
 /* Header file styles */
+header {
+	margin-top: 20px;
+}
 .content-header,
 .icon-holder,
 .user-badge {
@@ -186,6 +200,7 @@ li {
 	display: flex;
 	width: 50%;
 	flex-direction: column;
+	gap: 20px;
 }
 .project-progress {
 	padding: 15px;
@@ -234,6 +249,68 @@ li {
 .progress-bar-account span {
 	background-color: #1cc88a;
 }
+.color-theme {
+	gap: 20px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: 20px 0px;
+}
+.color-box {
+	height: 60px;
+	color: white;
+	padding: 15px;
+	width: 38%;
+	border-radius: 5px;
+	box-shadow: 1px 1px 6px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.white-color {
+	color: black;
+}
+
+/* Illustration styling */
+.illustrations {
+	padding: 15px;
+	border-radius: 5px;
+	box-shadow: 0px 0px 3px;
+}
+.illustration-content img {
+	width: 380px;
+	margin-bottom: 20px;
+}
+.illustration-content p {
+	color: #858999;
+	line-height: 2rem;
+	text-align: justify;
+	margin-bottom: 20px;
+}
+.illustration-content a {
+	background-color: transparent;
+	text-decoration: none;
+	color: blue;
+}
+.development {
+	padding: 15px;
+	border-radius: 5px;
+	box-shadow: 0px 0px 3px;
+}
+.development p {
+	color: #858999;
+	line-height: 1.8rem;
+	margin-bottom: 20px;
+}
+
+/* Footer style */
+footer {
+	display: flex;
+	height: 150px;
+	align-items: center;
+	justify-content: center;
+}
+
 /* Fonts */
 
 /* Media Queries */
