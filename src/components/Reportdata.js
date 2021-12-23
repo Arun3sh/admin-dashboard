@@ -10,7 +10,7 @@ export function Reportdata() {
 			<div className="report monthly">
 				<div className="report-type">
 					<div className="report-heading monthly-heading">EARNINGS (MONTHLY)</div>
-					<div className="report-value">$70000</div>
+					<div className="report-value">$70,000</div>
 				</div>
 				<div className="report-logo">
 					<CalendarToday />
@@ -20,7 +20,7 @@ export function Reportdata() {
 			<div className="report annual">
 				<div className="report-type">
 					<div className="report-heading annual-heading">EARNINGS (ANNUAL)</div>
-					<div className="report-value">$240000</div>
+					<div className="report-value">$240,000</div>
 				</div>
 				<div className="report-logo">
 					<FaDollarSign />
