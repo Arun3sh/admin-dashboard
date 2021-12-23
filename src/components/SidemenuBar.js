@@ -29,7 +29,7 @@ export function SidemenuBar() {
 				</ListItem>
 
 				<Divider variant="fullWidth" component="li" />
-				<ListItemText primary="INTERFACE" />
+				<ListItemText className="menu-heading" primary="INTERFACE" />
 
 				<ListItem>
 					<AiFillSetting className="menu-icons" />
@@ -42,7 +42,7 @@ export function SidemenuBar() {
 				</ListItem>
 
 				<Divider variant="fullWidth" component="li" />
-				<ListItemText primary="ADDONS" />
+				<ListItemText className="menu-heading" primary="ADDONS" />
 
 				<ListItem>
 					<AiFillFolder className="menu-icons" />
