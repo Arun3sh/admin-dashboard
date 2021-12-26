@@ -6,6 +6,8 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import { FaGrinWink } from 'react-icons/fa';
+import { Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
+import { ExpandMore } from '@mui/icons-material';
 
 export function SidemenuBar() {
 	return (
@@ -44,10 +46,25 @@ export function SidemenuBar() {
 				<Divider variant="fullWidth" component="li" />
 				<ListItemText className="menu-heading" primary="ADDONS" />
 
-				<ListItem>
-					<AiFillFolder className="menu-icons" />
-					<ListItemText primary="Pages" />
-				</ListItem>
+				<Accordion className="pages" elevation={0}>
+					<AccordionSummary
+						expandIcon={<ExpandMore />}
+						aria-controls="panel1a-content"
+						id="panel1a-header"
+					>
+						<Typography className="heading">
+							<AiFillFolder className="menu-icons" />
+							Pages
+						</Typography>
+					</AccordionSummary>
+					<AccordionDetails>
+						<List>
+							<ListItem>Login</ListItem>
+							<ListItem>Register</ListItem>
+							<ListItem>Forgot Password</ListItem>
+						</List>
+					</AccordionDetails>
+				</Accordion>
 
 				<ListItem>
 					<FaChartArea className="menu-icons" />
