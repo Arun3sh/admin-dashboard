@@ -1,5 +1,18 @@
-import { Divider } from '@mui/material';
+import { Divider, Paper } from '@mui/material';
 import { ProgressBar } from './progressBar';
+
+function Theme({ name, color, index }) {
+	return (
+		<div
+			className={`color-box ${name === 'Light' ? 'white-color' : ''}`}
+			key={index}
+			style={{ backgroundColor: color }}
+		>
+			<p className="color-title">{name}</p>
+			<p>{color}</p>
+		</div>
+	);
+}
 
 export function Othercontent() {
 	const project = [
@@ -67,17 +80,19 @@ export function Othercontent() {
 	return (
 		<div className="othercontent-wrapper">
 			<div className="column1">
-				<div className="project-progress">
-					<div className="data-title">
-						<h4>Projects</h4>
+				<Paper className="project-progress" elevation={5}>
+					<div>
+						<div className="data-title">
+							<h4>Projects</h4>
+						</div>
+						<Divider className="pic-divider" variant="fullWidth" />
+						<div className="progress-data">
+							{project.map(({ title, heading, value }, index) => (
+								<ProgressBar title={title} heading={heading} value={value} index={index} />
+							))}
+						</div>
 					</div>
-					<Divider className="pic-divider" variant="fullWidth" />
-					<div className="progress-data">
-						{project.map(({ title, heading, value }, index) => (
-							<ProgressBar title={title} heading={heading} value={value} index={index} />
-						))}
-					</div>
-				</div>
+				</Paper>
 
 				<div className="color-theme">
 					{theme.map(({ name, color }, index) => (
@@ -86,56 +101,49 @@ export function Othercontent() {
 				</div>
 			</div>
 			<div className="column2">
-				<div className="illustrations">
-					<div className="data-title">
-						<h4>Earnings Overview</h4>
+				<Paper className="project-progress" elevation={5}>
+					<div className="illustrations">
+						<div className="data-title">
+							<h4>Earnings Overview</h4>
+						</div>
+						<Divider className="pic-divider" variant="fullWidth" />
+						<div className="illustration-content">
+							<div className="img-illustration">
+								<img
+									src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/img/undraw_posting_photo.svg"
+									alt="representation"
+									aria-label="representation-image"
+								/>
+							</div>
+							<p>
+								Add some quality, svg illustrations to your project courtesy of unDraw, a constantly
+								updated collection of beautiful svg images that you can use completely free and
+								without attribution!
+							</p>
+							<a target="_blank" rel="noreferrer" href="https://undraw.co/">
+								Browse Illustrations on unDraw →
+							</a>
+						</div>
 					</div>
-					<Divider className="pic-divider" variant="fullWidth" />
-					<div className="illustration-content">
-						<img
-							src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/img/undraw_posting_photo.svg"
-							alt="representation"
-							aria-label="representation-image"
-						/>
+				</Paper>
+				<Paper className="project-progress" elevation={5}>
+					<div className="development">
+						<div className="data-title">
+							<h4>Development Approach</h4>
+						</div>
+						<Divider className="pic-divider" variant="fullWidth" />
 						<p>
-							Add some quality, svg illustrations to your project courtesy of unDraw, a constantly
-							updated collection of beautiful svg images that you can use completely free and
-							without attribution!
+							SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce CSS
+							bloat and poor page performance. Custom CSS classes are used to create custom
+							components and custom utility classes.
 						</p>
-						<a target="_blank" rel="noreferrer" href="https://undraw.co/">
-							Browse Illustrations on unDraw →
-						</a>
+						<p>
+							Before working with this theme, you should become familiar with the Bootstrap
+							framework, especially the utility classes.
+						</p>
 					</div>
-				</div>
-				<div className="development">
-					<div className="data-title">
-						<h4>Development Approach</h4>
-					</div>
-					<Divider className="pic-divider" variant="fullWidth" />
-					<p>
-						SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce CSS
-						bloat and poor page performance. Custom CSS classes are used to create custom components
-						and custom utility classes.
-					</p>
-					<p>
-						Before working with this theme, you should become familiar with the Bootstrap framework,
-						especially the utility classes.
-					</p>
-				</div>
+				</Paper>
 			</div>
-		</div>
-	);
-}
-
-function Theme({ name, color, index }) {
-	return (
-		<div
-			className={`color-box ${name === 'Light' ? 'white-color' : ''}`}
-			key={index}
-			style={{ backgroundColor: color }}
-		>
-			<p className="color-title">{name}</p>
-			<p>{color}</p>
 		</div>
 	);
 }

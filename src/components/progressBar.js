@@ -1,9 +1,6 @@
 import { Box, LinearProgress } from '@mui/material';
 
-export const ProgressBar = ({ title, heading, value }, index) => {
-	// console.log(title, heading, value);
-	//var values = +value;
-	// console.log({ value });
+export const ProgressBar = ({ title, heading, value, index }) => {
 	return (
 		<div className={title} key={index}>
 			<div className="progress-title">
