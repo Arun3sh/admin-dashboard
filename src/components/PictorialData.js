@@ -12,7 +12,7 @@ import {
 } from 'recharts';
 import IconButton from '@mui/material/IconButton';
 import { MoreVert } from '@mui/icons-material';
-import { Divider } from '@mui/material';
+import { Divider, Paper } from '@mui/material';
 
 export function PictorialData() {
 	const earningData = [
@@ -86,71 +86,75 @@ export function PictorialData() {
 
 	return (
 		<div className="pictorial-data">
-			<div className="graph">
-				<div className="data-title">
-					<h3>Earnings Overview</h3>
-					<IconButton>
-						<MoreVert />
-					</IconButton>
-				</div>
-				<Divider className="pic-divider" variant="fullWidth" />
-				<ResponsiveContainer width="100%" aspect={2}>
-					<LineChart
-						data={earningData}
-						margin={{
-							top: 10,
-							right: 30,
-							left: 20,
-							bottom: 5,
-						}}
-					>
-						<XAxis dataKey="month" interval={1} axisLine={false} tickLine={false} />
-						<YAxis axisLine={false} tickLine={false} domain={[5000, 40000]} />
-
-						<Tooltip cursor={false} />
-
-						<Line
-							type="monotone"
-							dataKey="Earnings"
-							stroke="#4E73DF"
-							strokeWidth={3}
-							dot={{ fill: '#4E73DF' }}
-							activeDot={{ r: 8 }}
-						/>
-					</LineChart>
-				</ResponsiveContainer>
-			</div>
-			<div className="pie-chart">
-				<div className="data-title">
-					<h3>Revenue Sources</h3>
-					<IconButton>
-						<MoreVert />
-					</IconButton>
-				</div>
-				<Divider className="pic-divider" variant="fullWidth" />
-				<ResponsiveContainer width="100%" aspect={1.15}>
-					<PieChart>
-						<Pie
-							data={revenueSource}
-							dataKey="value"
-							nameKey="name"
-							cx="50%"
-							cy="50%"
-							outerRadius={100}
-							innerRadius={80}
-							fill="#8884d8"
-							startAngle={90}
-							endAngle={450}
+			<Paper className="graph" elevation={5}>
+				<div className="graph-div">
+					<div className="data-title">
+						<h3>Earnings Overview</h3>
+						<IconButton>
+							<MoreVert />
+						</IconButton>
+					</div>
+					<Divider className="pic-divider" variant="fullWidth" />
+					<ResponsiveContainer width="100%" aspect={2}>
+						<LineChart
+							data={earningData}
+							margin={{
+								top: 10,
+								right: 30,
+								left: 20,
+								bottom: 5,
+							}}
 						>
-							{revenueSource.map((entry, index) => (
-								<Cell key={index} fill={entry.color} />
-							))}
-						</Pie>
-						<Legend iconType={'circle'} />
-						<Tooltip />
-					</PieChart>
-				</ResponsiveContainer>
-			</div>
+							<XAxis dataKey="month" interval={1} axisLine={false} tickLine={false} />
+							<YAxis axisLine={false} tickLine={false} domain={[5000, 40000]} />
+
+							<Tooltip cursor={false} />
+
+							<Line
+								type="monotone"
+								dataKey="Earnings"
+								stroke="#4E73DF"
+								strokeWidth={3}
+								dot={{ fill: '#4E73DF' }}
+								activeDot={{ r: 8 }}
+							/>
+						</LineChart>
+					</ResponsiveContainer>
+				</div>
+			</Paper>
+			<Paper className="pie-chart" elevation={5}>
+				<div className="pie-chart-div">
+					<div className="data-title">
+						<h3>Revenue Sources</h3>
+						<IconButton>
+							<MoreVert />
+						</IconButton>
+					</div>
+					<Divider className="pic-divider" variant="fullWidth" />
+					<ResponsiveContainer width="100%" aspect={1.15}>
+						<PieChart>
+							<Pie
+								data={revenueSource}
+								dataKey="value"
+								nameKey="name"
+								cx="50%"
+								cy="50%"
+								outerRadius={100}
+								innerRadius={80}
+								fill="#8884d8"
+								startAngle={90}
+								endAngle={450}
+							>
+								{revenueSource.map((entry, index) => (
+									<Cell key={index} fill={entry.color} />
+								))}
+							</Pie>
+							<Legend iconType={'circle'} />
+							<Tooltip />
+						</PieChart>
+					</ResponsiveContainer>
+				</div>
+			</Paper>
 		</div>
 	);
 }
