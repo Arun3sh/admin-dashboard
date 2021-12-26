@@ -1,7 +1,7 @@
 /* Variables */
 :root {
 	--primaryBG: #191919;
-	--secondary: #3498db;
+	--secondary: #4e73df;
 	--third: #2ecc73;
 }
 /* Reset */
@@ -22,14 +22,14 @@ li {
 
 /* Side Menu Bar Style */
 .sidemenu {
-	background-color: #4e73df;
+	background-color: var(--secondary);
 	width: 18%;
 }
 .sidemenu ul {
 	color: white;
-	background-color: #4e73df;
+	background-color: var(--secondary);
 }
-.sidemenu ul div {
+.menu-heading {
 	margin-left: 10px;
 }
 .menu-heading,
@@ -50,7 +50,10 @@ li {
 	align-items: center;
 	margin-right: 10px;
 }
-
+.pages {
+	background-color: var(--secondary) !important;
+	color: white !important;
+}
 /* Content Wrapper Styles */
 .content-wrapper {
 	padding: 0px 20px;
@@ -119,10 +122,10 @@ header {
 	justify-content: space-around;
 }
 .monthly {
-	box-shadow: -5px 0px 0px #4e73df;
+	box-shadow: -5px 0px 0px var(--secondary);
 }
 .monthly-heading {
-	color: #4e73df;
+	color: var(--secondary);
 }
 .annual {
 	box-shadow: -5px 0px 0px #1cc88a;
@@ -174,16 +177,12 @@ header {
 .graph {
 	padding: 0 20px;
 	width: 63%;
-	/* border: 1px solid blue; */
 	border-radius: 5px;
-	box-shadow: 0px 1px 3px 0px;
 }
 .pie-chart {
 	padding: 0 20px;
 	width: 35%;
-	/* border: 1px solid rgb(19, 207, 35); */
 	border-radius: 5px;
-	box-shadow: 0px 1px 3px 0px;
 }
 /* Other content styles */
 .othercontent-wrapper {
@@ -192,6 +191,7 @@ header {
 	gap: 20px;
 }
 .column1 {
+	gap: 20px;
 	display: flex;
 	width: 50%;
 	flex-direction: column;
@@ -204,8 +204,8 @@ header {
 }
 .project-progress {
 	padding: 15px;
-	border-radius: 5px;
-	box-shadow: 0px 0px 3px;
+	/* border-radius: 5px;
+	box-shadow: 0px 0px 3px; */
 }
 .css-futumu-MuiLinearProgress-root::before {
 	background-color: #afafaf;
@@ -272,18 +272,20 @@ header {
 }
 
 /* Illustration styling */
-.illustrations {
-	padding: 15px;
-	border-radius: 5px;
-	box-shadow: 0px 0px 3px;
+.illustration-content {
+	margin-bottom: 30px;
+}
+.img-illustration {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 30px;
 }
 .illustration-content img {
-	width: 380px;
-	margin-bottom: 20px;
+	width: 400px;
 }
 .illustration-content p {
 	color: #858999;
-	line-height: 2rem;
+	line-height: 1.5rem;
 	text-align: justify;
 	margin-bottom: 20px;
 }
@@ -292,14 +294,10 @@ header {
 	text-decoration: none;
 	color: blue;
 }
-.development {
-	padding: 15px;
-	border-radius: 5px;
-	box-shadow: 0px 0px 3px;
-}
+
 .development p {
 	color: #858999;
-	line-height: 1.8rem;
+	line-height: 1.5rem;
 	margin-bottom: 20px;
 }
 
