@@ -6,7 +6,13 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import { FaGrinWink } from 'react-icons/fa';
-import { Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
+import {
+	Accordion,
+	AccordionSummary,
+	AccordionDetails,
+	Typography,
+	ListItemButton,
+} from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
 
 export function SidemenuBar() {
@@ -25,23 +31,52 @@ export function SidemenuBar() {
 						<h3>SB ADMIN</h3>
 					</div>
 				</ListItem>
-				<ListItem>
+				<ListItemButton>
 					<AiFillDashboard className="menu-icons" />
 					<ListItemText primary="Dashboard" />
-				</ListItem>
+				</ListItemButton>
 
 				<Divider variant="fullWidth" component="li" />
 				<ListItemText className="menu-heading" primary="INTERFACE" />
 
-				<ListItem>
-					<AiFillSetting className="menu-icons" />
-					<ListItemText primary="Components" />
-				</ListItem>
+				<Accordion className="pages" elevation={0}>
+					<AccordionSummary
+						expandIcon={<ExpandMore />}
+						aria-controls="panel1a-content"
+						id="panel1a-header"
+					>
+						<Typography className="heading">
+							<AiFillSetting className="menu-icons" />
+							Components
+						</Typography>
+					</AccordionSummary>
+					<AccordionDetails>
+						<List>
+							<ListItemButton>Buttons</ListItemButton>
+							<ListItemButton>Cards</ListItemButton>
+						</List>
+					</AccordionDetails>
+				</Accordion>
 
-				<ListItem>
-					<TiSpanner className="menu-icons" />
-					<ListItemText primary="Utilites" />
-				</ListItem>
+				<Accordion className="pages" elevation={0}>
+					<AccordionSummary
+						expandIcon={<ExpandMore />}
+						aria-controls="panel1a-content"
+						id="panel1a-header"
+					>
+						<Typography className="heading">
+							<TiSpanner className="menu-icons" />
+							Utilites
+						</Typography>
+					</AccordionSummary>
+					<AccordionDetails>
+						<List>
+							<ListItemButton>Colors</ListItemButton>
+							<ListItemButton>Borders</ListItemButton>
+							<ListItemButton>Animation</ListItemButton>
+						</List>
+					</AccordionDetails>
+				</Accordion>
 
 				<Divider variant="fullWidth" component="li" />
 				<ListItemText className="menu-heading" primary="ADDONS" />
@@ -54,27 +89,27 @@ export function SidemenuBar() {
 					>
 						<Typography className="heading">
 							<AiFillFolder className="menu-icons" />
-							Pages
+							LogIn/SignIn
 						</Typography>
 					</AccordionSummary>
 					<AccordionDetails>
 						<List>
-							<ListItem>Login</ListItem>
-							<ListItem>Register</ListItem>
-							<ListItem>Forgot Password</ListItem>
+							<ListItemButton>Login</ListItemButton>
+							<ListItemButton>Register</ListItemButton>
+							<ListItemButton>Forgot Password</ListItemButton>
 						</List>
 					</AccordionDetails>
 				</Accordion>
 
-				<ListItem>
+				<ListItemButton>
 					<FaChartArea className="menu-icons" />
 					<ListItemText primary="Charts" />
-				</ListItem>
+				</ListItemButton>
 
-				<ListItem>
+				<ListItemButton>
 					<FaTable className="menu-icons" />
 					<ListItemText primary="Tables" />
-				</ListItem>
+				</ListItemButton>
 			</List>
 		</nav>
 	);
