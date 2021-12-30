@@ -14,6 +14,7 @@ import {
 	ListItemButton,
 } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 
 export function SidemenuBar() {
 	return (
@@ -47,7 +48,7 @@ export function SidemenuBar() {
 					>
 						<Typography className="heading">
 							<AiFillSetting className="menu-icons" />
-							Components
+							<span>Components</span>
 						</Typography>
 					</AccordionSummary>
 					<AccordionDetails>
@@ -66,7 +67,7 @@ export function SidemenuBar() {
 					>
 						<Typography className="heading">
 							<TiSpanner className="menu-icons" />
-							Utilites
+							<span>Utilites</span>
 						</Typography>
 					</AccordionSummary>
 					<AccordionDetails>
@@ -103,12 +104,18 @@ export function SidemenuBar() {
 
 				<ListItemButton>
 					<FaChartArea className="menu-icons" />
-					<ListItemText primary="Charts" />
+					<a style={{ color: 'white' }} href="/charts">
+						Charts
+					</a>
+					{/* <ListItemText primary="Charts" /> */}
 				</ListItemButton>
 
 				<ListItemButton>
 					<FaTable className="menu-icons" />
-					<ListItemText primary="Tables" />
+					<a style={{ color: 'white' }} href="/tables">
+						Tables
+					</a>
+					{/* <ListItemText primary="Tables" /> */}
 				</ListItemButton>
 			</List>
 		</nav>
