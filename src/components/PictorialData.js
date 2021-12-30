@@ -14,7 +14,7 @@ import IconButton from '@mui/material/IconButton';
 import { MoreVert } from '@mui/icons-material';
 import { Divider, Paper } from '@mui/material';
 
-export function PictorialData() {
+export function PictorialData({ menu, setMenu }) {
 	const earningData = [
 		{
 			month: 'Jan',
@@ -95,13 +95,13 @@ export function PictorialData() {
 						</IconButton>
 					</div>
 					<Divider className="pic-divider" variant="fullWidth" />
-					<ResponsiveContainer width="100%" aspect={2}>
+					<ResponsiveContainer width="100%" aspect={1.8}>
 						<LineChart
 							data={earningData}
 							margin={{
 								top: 10,
-								right: 30,
-								left: 20,
+								right: 20,
+								left: 5,
 								bottom: 5,
 							}}
 						>
@@ -116,31 +116,32 @@ export function PictorialData() {
 								stroke="#4E73DF"
 								strokeWidth={3}
 								dot={{ fill: '#4E73DF' }}
-								activeDot={{ r: 8 }}
+								activeDot={{ r: 5 }}
 							/>
 						</LineChart>
 					</ResponsiveContainer>
 				</div>
 			</Paper>
 			<Paper className="pie-chart" elevation={5}>
+				<div className="data-title">
+					<h3>Revenue Sources</h3>
+					<IconButton>
+						<MoreVert />
+					</IconButton>
+				</div>
 				<div className="pie-chart-div">
-					<div className="data-title">
-						<h3>Revenue Sources</h3>
-						<IconButton>
-							<MoreVert />
-						</IconButton>
-					</div>
 					<Divider className="pic-divider" variant="fullWidth" />
-					<ResponsiveContainer width="100%" aspect={1.15}>
+					<ResponsiveContainer className="rc-piechart" width="100%" aspect={1.15}>
 						<PieChart>
 							<Pie
+								className="pie-chart-pie"
 								data={revenueSource}
 								dataKey="value"
 								nameKey="name"
 								cx="50%"
 								cy="50%"
-								outerRadius={100}
-								innerRadius={80}
+								outerRadius={75}
+								innerRadius={60}
 								fill="#8884d8"
 								startAngle={90}
 								endAngle={450}
