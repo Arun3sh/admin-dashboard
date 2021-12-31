@@ -12,9 +12,10 @@ import {
 	AccordionDetails,
 	Typography,
 	ListItemButton,
+	Button,
 } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 export function SidemenuBar() {
 	return (
@@ -32,17 +33,21 @@ export function SidemenuBar() {
 						<h3>SB ADMIN</h3>
 					</div>
 				</ListItem>
-				<ListItemButton>
+
+				<div className="menu-page">
 					<AiFillDashboard className="menu-icons" />
-					<ListItemText primary="Dashboard" />
-				</ListItemButton>
+					<a style={{ color: 'white' }} href="/">
+						Dashboard
+					</a>
+					{/* <ListItemText primary="Dashboard" /> */}
+				</div>
 
 				<Divider variant="fullWidth" component="li" />
 				<ListItemText className="menu-heading" primary="INTERFACE" />
 
 				<Accordion className="pages" elevation={0}>
 					<AccordionSummary
-						expandIcon={<ExpandMore />}
+						expandIcon={<ExpandMore className="accordian-button" />}
 						aria-controls="panel1a-content"
 						id="panel1a-header"
 					>
@@ -52,7 +57,7 @@ export function SidemenuBar() {
 						</Typography>
 					</AccordionSummary>
 					<AccordionDetails>
-						<List>
+						<List className="accordian-list">
 							<ListItemButton>Buttons</ListItemButton>
 							<ListItemButton>Cards</ListItemButton>
 						</List>
@@ -71,7 +76,7 @@ export function SidemenuBar() {
 						</Typography>
 					</AccordionSummary>
 					<AccordionDetails>
-						<List>
+						<List className="accordian-list">
 							<ListItemButton>Colors</ListItemButton>
 							<ListItemButton>Borders</ListItemButton>
 							<ListItemButton>Animation</ListItemButton>
@@ -90,11 +95,11 @@ export function SidemenuBar() {
 					>
 						<Typography className="heading">
 							<AiFillFolder className="menu-icons" />
-							LogIn/SignIn
+							<span>LogIn</span>
 						</Typography>
 					</AccordionSummary>
 					<AccordionDetails>
-						<List>
+						<List className="accordian-list">
 							<ListItemButton>Login</ListItemButton>
 							<ListItemButton>Register</ListItemButton>
 							<ListItemButton>Forgot Password</ListItemButton>
@@ -102,21 +107,21 @@ export function SidemenuBar() {
 					</AccordionDetails>
 				</Accordion>
 
-				<ListItemButton>
+				<div className="menu-page">
 					<FaChartArea className="menu-icons" />
 					<a style={{ color: 'white' }} href="/charts">
 						Charts
 					</a>
 					{/* <ListItemText primary="Charts" /> */}
-				</ListItemButton>
+				</div>
 
-				<ListItemButton>
+				<div className="menu-page">
 					<FaTable className="menu-icons" />
 					<a style={{ color: 'white' }} href="/tables">
 						Tables
 					</a>
 					{/* <ListItemText primary="Tables" /> */}
-				</ListItemButton>
+				</div>
 			</List>
 		</nav>
 	);
