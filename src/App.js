@@ -12,7 +12,7 @@ function App() {
 		<div className="App">
 			<div className="Wrapper">
 				{menu ? '' : <SidemenuBar />}
-				<div className="content-wrapper" style={{ width: menu ? '100%' : '75%' }}>
+				<div className="content-wrapper" style={{ width: menu ? '100%' : '72%' }}>
 					<Header menu={menu} setMenu={setMenu} />
 					<Switch>
 						<Route exact path="/">
