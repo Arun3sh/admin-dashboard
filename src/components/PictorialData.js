@@ -105,7 +105,13 @@ export function PictorialData({ menu, setMenu }) {
 								bottom: 5,
 							}}
 						>
-							<XAxis dataKey="month" interval={1} axisLine={false} tickLine={false} />
+							<XAxis
+								dataKey="month"
+								interval={menu ? 1 : 2}
+								axisLine={false}
+								tickLine={false}
+								angle={menu ? 45 : 0}
+							/>
 							<YAxis axisLine={false} tickLine={false} domain={[5000, 40000]} />
 
 							<Tooltip cursor={false} />
