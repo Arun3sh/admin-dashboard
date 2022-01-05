@@ -3,6 +3,7 @@ import { SidemenuBar } from './components/SidemenuBar';
 import { Header } from './components/Header';
 import { Maincontent } from './components/Maincontent';
 import { Error } from './components/ErrorPage';
+import { Login } from './user components/Login';
 import { Switch, Route } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -20,6 +21,10 @@ function App() {
 						</Route>
 						<Route path="/charts">Welcome to charts</Route>
 						<Route path="/tables">Welcome to tables</Route>
+						<Route path="/login">
+							<Login />
+						</Route>
+
 						<Route path="**">
 							<Error />
 						</Route>
