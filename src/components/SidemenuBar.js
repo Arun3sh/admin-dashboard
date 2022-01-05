@@ -14,7 +14,7 @@ import {
 	ListItemButton,
 } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export function SidemenuBar() {
 	return (
@@ -35,6 +35,7 @@ export function SidemenuBar() {
 
 				<div className="menu-page">
 					<AiFillDashboard className="menu-icons" />
+
 					<a style={{ color: 'white' }} href="/">
 						Dashboard
 					</a>
@@ -99,9 +100,15 @@ export function SidemenuBar() {
 					</AccordionSummary>
 					<AccordionDetails>
 						<List className="accordian-list">
-							<ListItemButton>Login</ListItemButton>
-							<ListItemButton>Register</ListItemButton>
-							<ListItemButton>Forgot Password</ListItemButton>
+							<ListItemButton>
+								<Link to="/login">Login</Link>
+							</ListItemButton>
+							<ListItemButton>
+								<Link to="/login">Register</Link>
+							</ListItemButton>
+							<ListItemButton>
+								<Link to="/login">Forgot Password</Link>
+							</ListItemButton>
 						</List>
 					</AccordionDetails>
 				</Accordion>
