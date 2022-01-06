@@ -1,6 +1,9 @@
 import { Button, TextField } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
-export function Login() {
+export function Login({ login, setLogin }) {
+	const history = useHistory();
 	return (
 		<div className="login-wrapper">
 			<div className="row-login">
@@ -17,12 +20,18 @@ export function Login() {
 				</div>
 				<div className="login-btn-container">
 					<div className="forgot-password">
-						<a href="/login" aria-label="forgot password">
+						<Link to="/login" aria-label="forgot password">
 							Forgot Password?
-						</a>
+						</Link>
 					</div>
-					<Button variant="outlined">LOGIN</Button>
-					<div className="register-yet">Haven't registered?</div>
+					<Button variant="outlined" onClick={() => setLogin(!login) & history.push('/')}>
+						LOGIN
+					</Button>
+					<div className="register-yet">
+						<Link to="/login" aria-label="not registered">
+							Haven't Registered Yet?
+						</Link>
+					</div>
 				</div>
 			</div>
 			<div className="row-illustration"></div>
