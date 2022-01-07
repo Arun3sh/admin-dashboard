@@ -1,6 +1,8 @@
 import { Button, TextField } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
+import { AiFillEyeInvisible } from 'react-icons/ai';
+import { InputAdornment } from '@mui/material';
 
 export function Login({ login, setLogin }) {
 	const history = useHistory();
@@ -16,7 +18,18 @@ export function Login({ login, setLogin }) {
 				</div>
 				<div className="password-container">
 					<label for="password">Password</label>
-					<TextField className="password-textfield" placeholder="enter your password" />
+					<TextField
+						className="password-textfield"
+						type="password"
+						placeholder="enter your password"
+						InputProps={{
+							endAdornment: (
+								<InputAdornment position="end">
+									<AiFillEyeInvisible />
+								</InputAdornment>
+							),
+						}}
+					/>
 				</div>
 				<div className="login-btn-container">
 					<div className="forgot-password">
