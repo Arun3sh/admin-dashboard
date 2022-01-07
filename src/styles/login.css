@@ -27,6 +27,7 @@
 	margin-left: auto;
 }
 .row-illustration {
+	background: url(../illustration.jpg);
 	width: 100%;
 	background-color: yellow;
 }
