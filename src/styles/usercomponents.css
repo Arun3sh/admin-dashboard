@@ -29,5 +29,14 @@
 .row-illustration {
 	background: url(../illustration.jpg);
 	width: 100%;
-	background-color: yellow;
+}
+
+/* Forgot Password */
+.forgotpassword-wrapper {
+	gap: 25px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 20px;
+	height: 80vh;
 }
