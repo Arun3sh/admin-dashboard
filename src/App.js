@@ -1,5 +1,5 @@
 import './App.css';
-import './styles/login.css';
+import './styles/usercomponents.css';
 import { SidemenuBar } from './components/SidemenuBar';
 import { Header } from './components/Header';
 import { Maincontent } from './components/Maincontent';
@@ -8,6 +8,7 @@ import { Login } from './user components/Login';
 import { Switch, Route } from 'react-router-dom';
 import { useState } from 'react';
 import { Redirect } from 'react-router-dom';
+import { Forgotpassword } from './user components/Forgotpassword';
 
 function App() {
 	const [menu, setMenu] = useState(false);
@@ -30,11 +31,12 @@ function App() {
 						<Route path="/login">
 							<Login login={login} setLogin={setLogin} />
 						</Route>
-
+						<Route path="/forgot-password">
+							<Forgotpassword />
+						</Route>
 						<Route path="**">
 							<Error />
 						</Route>
-						<Route path="/chart">Charts</Route>
 					</Switch>
 					<footer>Copyright © Your Website 2020</footer>
 				</div>

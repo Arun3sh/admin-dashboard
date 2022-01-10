@@ -33,7 +33,7 @@ export function Login({ login, setLogin }) {
 				</div>
 				<div className="login-btn-container">
 					<div className="forgot-password">
-						<Link to="/login" aria-label="forgot password">
+						<Link to="/forgot-password" aria-label="forgot password">
 							Forgot Password?
 						</Link>
 					</div>
