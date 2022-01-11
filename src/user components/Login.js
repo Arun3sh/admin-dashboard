@@ -41,7 +41,7 @@ export function Login({ login, setLogin }) {
 						LOGIN
 					</Button>
 					<div className="register-yet">
-						<Link to="/login" aria-label="not registered">
+						<Link to="/create-user" aria-label="not registered">
 							Haven't Registered Yet?
 						</Link>
 					</div>

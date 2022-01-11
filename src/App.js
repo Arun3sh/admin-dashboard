@@ -9,6 +9,7 @@ import { Switch, Route } from 'react-router-dom';
 import { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Forgotpassword } from './user components/Forgotpassword';
+import { Register } from './user components/Register';
 
 function App() {
 	const [menu, setMenu] = useState(false);
@@ -33,6 +34,9 @@ function App() {
 						</Route>
 						<Route path="/forgot-password">
 							<Forgotpassword />
+						</Route>
+						<Route path="/create-user">
+							<Register />
 						</Route>
 						<Route path="**">
 							<Error />
