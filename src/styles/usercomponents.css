@@ -40,3 +40,13 @@
 	margin: 20px;
 	height: 80vh;
 }
+
+/* Register New User */
+.register-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
+	align-items: center;
+	margin: 20px;
+	height: 90vh;
+}
