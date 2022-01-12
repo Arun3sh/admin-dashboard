@@ -38,6 +38,11 @@ function App() {
 						<Route path="/create-user">
 							<Register />
 						</Route>
+						<Route path="/users">View User</Route>
+						<Route path="/edit-user/:id">Edit user</Route>
+						<Route path="/delete-user/:id">Delete user</Route>
+						<Route path="/profile/:id"> view profile</Route>
+						<Route path="/edit-profile/:id"> edit profile</Route>
 						<Route path="**">
 							<Error />
 						</Route>
