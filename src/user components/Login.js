@@ -13,11 +13,11 @@ export function Login({ login, setLogin }) {
 					<h2>Login</h2>
 				</div>
 				<div className="email-container">
-					<label for="email">Email</label>
+					<label>Email</label>
 					<TextField className="email-textfield" placeholder="enter your email" />
 				</div>
 				<div className="password-container">
-					<label for="password">Password</label>
+					<label>Password</label>
 					<TextField
 						className="password-textfield"
 						type="password"
