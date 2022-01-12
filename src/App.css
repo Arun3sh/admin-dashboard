@@ -364,6 +364,9 @@ footer {
 	.menu-icons {
 		margin-right: 0px;
 	}
+	.accordian-list {
+		color: white !important;
+	}
 	.accordian-list div {
 		padding: 10px 0px;
 	}
