@@ -5,7 +5,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
-import { FaGrinWink } from 'react-icons/fa';
+import { FaGrinWink, FaUserCircle, FaList } from 'react-icons/fa';
 import {
 	Accordion,
 	AccordionSummary,
@@ -87,6 +87,8 @@ export function SidemenuBar() {
 				<Divider variant="fullWidth" component="li" />
 				<ListItemText className="menu-heading" primary="ADDONS" />
 
+				{/* Login pages */}
+
 				<Accordion className="pages" elevation={0}>
 					<AccordionSummary
 						expandIcon={<ExpandMore />}
@@ -108,6 +110,61 @@ export function SidemenuBar() {
 							</ListItemButton>
 							<ListItemButton>
 								<Link to="/login">Forgot Password</Link>
+							</ListItemButton>
+						</List>
+					</AccordionDetails>
+				</Accordion>
+
+				{/* profile pages */}
+
+				<Accordion className="pages" elevation={0}>
+					<AccordionSummary
+						expandIcon={<ExpandMore />}
+						aria-controls="panel1a-content"
+						id="panel1a-header"
+					>
+						<Typography className="heading">
+							<FaUserCircle className="menu-icons" />
+							<span>My Profile</span>
+						</Typography>
+					</AccordionSummary>
+					<AccordionDetails>
+						<List className="accordian-list">
+							<ListItemButton>
+								<Link to="/profile/:id">View Profile</Link>
+							</ListItemButton>
+							<ListItemButton>
+								<Link to="/edit-profile/:id">Edit Profile</Link>
+							</ListItemButton>
+						</List>
+					</AccordionDetails>
+				</Accordion>
+
+				{/* user pages */}
+				<Accordion className="pages" elevation={0}>
+					<AccordionSummary
+						expandIcon={<ExpandMore />}
+						aria-controls="panel1a-content"
+						id="panel1a-header"
+					>
+						<Typography className="heading">
+							<FaList className="menu-icons" />
+							<span>Users</span>
+						</Typography>
+					</AccordionSummary>
+					<AccordionDetails>
+						<List className="accordian-list">
+							<ListItemButton>
+								<Link to="/users">View Users</Link>
+							</ListItemButton>
+							<ListItemButton>
+								<Link to="/create-user">Create User</Link>
+							</ListItemButton>
+							<ListItemButton>
+								<Link to="/edit-user/:id">Edit User</Link>
+							</ListItemButton>
+							<ListItemButton>
+								<Link to="/delete-user/:id">Delete User</Link>
 							</ListItemButton>
 						</List>
 					</AccordionDetails>
