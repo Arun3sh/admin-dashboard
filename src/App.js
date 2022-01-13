@@ -10,6 +10,7 @@ import { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Forgotpassword } from './user components/Forgotpassword';
 import { Register } from './user components/Register';
+import { Viewprofile } from './user components/Viewprofile';
 
 function App() {
 	const [menu, setMenu] = useState(false);
@@ -20,7 +21,7 @@ function App() {
 				{menu ? '' : login ? <SidemenuBar /> : ''}
 
 				<div className="content-wrapper" style={{ width: menu ? '100%' : '72%' }}>
-					{login ? <Header menu={menu} setMenu={setMenu} /> : ''}
+					{login ? <Header menu={menu} setMenu={setMenu} login={login} setLogin={setLogin} /> : ''}
 
 					<Switch>
 						<Route exact path="/">
@@ -41,7 +42,9 @@ function App() {
 						<Route path="/users">View User</Route>
 						<Route path="/edit-user/:id">Edit user</Route>
 						<Route path="/delete-user/:id">Delete user</Route>
-						<Route path="/profile/:id"> view profile</Route>
+						<Route path="/profile/:id">
+							<Viewprofile />
+						</Route>
 						<Route path="/edit-profile/:id"> edit profile</Route>
 						<Route path="**">
 							<Error />
