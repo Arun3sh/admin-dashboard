@@ -6,9 +6,11 @@ import MailIcon from '@mui/icons-material/Mail';
 import { Avatar, Divider, Button } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
-export function Header({ menu, setMenu }) {
+export function Header({ menu, setMenu, login, setLogin }) {
 	const [showsearch, setShowsearch] = useState(false);
+	const history = useHistory();
 	return (
 		<header className="content-header">
 			<div className="content-header-div">
@@ -51,7 +53,13 @@ export function Header({ menu, setMenu }) {
 
 					{/* User name and profie pic */}
 					<div className="user-badge">
-						<span className="profile-name">UserName</span>
+						<span
+							className="profile-name"
+							style={{ cursor: 'pointer' }}
+							onClick={() => setLogin(!login) & history.push('/login')}
+						>
+							Logout
+						</span>
 						<Avatar src="/broken-image.jpg" />
 					</div>
 				</div>
