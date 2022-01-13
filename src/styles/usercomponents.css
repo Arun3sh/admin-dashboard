@@ -50,3 +50,9 @@
 	margin: 20px;
 	height: 90vh;
 }
+
+/* Profile-pic */
+.profile-pic {
+	width: 200px !important;
+	height: 200px !important;
+}
