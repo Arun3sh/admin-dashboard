@@ -15,6 +15,19 @@ import { Viewprofile } from './user components/Viewprofile';
 function App() {
 	const [menu, setMenu] = useState(false);
 	const [login, setLogin] = useState(false);
+	const userlist = [
+		{
+			id: '100',
+			name: 'Arun',
+			email: 'm.aruneshwar@gmail.com',
+			profilepic: 'https://www.themoviedb.org/t/p/w1280//zHJYRHI5HkQuwLW5KyeXGQ596u7.jpg',
+			food: 'Dosa, Briyani',
+			sport: 'cricket, football',
+			hobby: 'watching movies and series',
+			location: 'Coimbatore',
+			language: 'english, tamil',
+		},
+	];
 	return (
 		<div className="App">
 			<div className="Wrapper">
@@ -43,7 +56,19 @@ function App() {
 						<Route path="/edit-user/:id">Edit user</Route>
 						<Route path="/delete-user/:id">Delete user</Route>
 						<Route path="/profile/:id">
-							<Viewprofile />
+							{userlist.map(
+								({ name, email, profilepic, food, sport, hobby, location, language }) => (
+									<Viewprofile
+										name={name}
+										email={email}
+										profilepic={profilepic}
+										food={food}
+										sport={sport}
+										hobby={hobby}
+										language={language}
+									/>
+								)
+							)}
 						</Route>
 						<Route path="/edit-profile/:id"> edit profile</Route>
 						<Route path="**">
