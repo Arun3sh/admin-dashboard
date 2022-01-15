@@ -2,6 +2,7 @@
 	display: flex;
 	flex-direction: row;
 	height: 100vh;
+	margin: 30px;
 }
 .row-login {
 	width: 100%;
@@ -55,4 +56,27 @@
 .profile-pic {
 	width: 200px !important;
 	height: 200px !important;
+}
+
+/* View Profile */
+.viewprofile-wrapper {
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+	height: 80vh;
+}
+.user-main {
+	width: 50%;
+}
+.user-main-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+}
+.about-user {
+	text-align: center;
+}
+.mail-user {
+	margin-top: 25px;
 }
