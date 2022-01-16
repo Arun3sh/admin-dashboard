@@ -63,7 +63,7 @@ li {
 .content-header {
 	margin-top: 20px;
 }
-.hamburger-menu,
+/* .hamburger-menu, */
 .search-button-small {
 	display: none !important;
 }
