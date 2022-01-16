@@ -13,14 +13,17 @@ import { Register } from './user components/Register';
 import { Viewprofile } from './user components/Viewprofile';
 
 function App() {
-	const [menu, setMenu] = useState(false);
+	const [menu, setMenu] = useState(true);
 	const [login, setLogin] = useState(false);
 	const userlist = [
 		{
 			id: '100',
 			name: 'Arun',
 			email: 'm.aruneshwar@gmail.com',
+			about:
+				"I'm a Web Developer currenty working on my dashboard project. Always on the look out for upskilling me!",
 			profilepic: 'https://www.themoviedb.org/t/p/w1280//zHJYRHI5HkQuwLW5KyeXGQ596u7.jpg',
+			coverpic: 'https://wallpapercave.com/wp/HByeKGm.jpg',
 			food: 'Dosa, Briyani',
 			sport: 'cricket, football',
 			hobby: 'watching movies and series',
@@ -57,14 +60,28 @@ function App() {
 						<Route path="/delete-user/:id">Delete user</Route>
 						<Route path="/profile/:id">
 							{userlist.map(
-								({ name, email, profilepic, food, sport, hobby, location, language }) => (
+								({
+									name,
+									email,
+									about,
+									profilepic,
+									coverpic,
+									food,
+									sport,
+									hobby,
+									location,
+									language,
+								}) => (
 									<Viewprofile
 										name={name}
 										email={email}
+										about={about}
 										profilepic={profilepic}
+										coverpic={coverpic}
 										food={food}
 										sport={sport}
 										hobby={hobby}
+										location={location}
 										language={language}
 									/>
 								)
