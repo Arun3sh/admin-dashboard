@@ -27,6 +27,7 @@ export function Viewprofile({
 					<p className="location">{location}</p>
 					<Avatar sx={{ bgcolor: blue[500] }} className="mail-user">
 						<Mail />
+						{/* {email} */}
 					</Avatar>
 					<div className="btns-user">
 						<Button size="small" color="primary" onClick={() => history.goBack()}>
@@ -39,7 +40,30 @@ export function Viewprofile({
 				</div>
 			</div>
 			<div className="user-other">
-				<div className="">Hobby</div>
+				<div className="hobby">
+					<h3>Hobby {hobby} </h3>
+					<p>
+						A hobby is considered to be a regular activity that is done for enjoyment, typically
+						during one's leisure time. Hobbies include collecting themed items and objects, engaging
+						in creative and artistic pursuits, playing sports, or pursuing other amusements.
+					</p>
+				</div>
+				<div className="food">
+					<h3>Favourite Food {food}</h3>
+					<p>
+						A hobby is considered to be a regular activity that is done for enjoyment, typically
+						during one's leisure time. Hobbies include collecting themed items and objects, engaging
+						in creative and artistic pursuits, playing sports, or pursuing other amusements.
+					</p>
+				</div>
+				<div className="sport">
+					<h3>Favourite Sport {sport}</h3>
+					<p>
+						A hobby is considered to be a regular activity that is done for enjoyment, typically
+						during one's leisure time. Hobbies include collecting themed items and objects, engaging
+						in creative and artistic pursuits, playing sports, or pursuing other amusements.
+					</p>
+				</div>
 			</div>
 		</div>
 	);
