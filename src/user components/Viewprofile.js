@@ -1,5 +1,5 @@
 import { Avatar } from '@mui/material';
-import { Button } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import { Mail } from '@mui/icons-material';
 import { blue } from '@mui/material/colors';
@@ -25,10 +25,13 @@ export function Viewprofile({
 					<Avatar className="profile-pic" alt={name} src={profilepic} />
 					<p className="about-user">{about}</p>
 					<p className="location">{location}</p>
-					<Avatar sx={{ bgcolor: blue[500] }} className="mail-user">
-						<Mail />
-						{/* {email} */}
-					</Avatar>
+
+					{/* {email} */}
+					<IconButton className="mail-user">
+						<Avatar sx={{ bgcolor: blue[500] }}>
+							<Mail />
+						</Avatar>
+					</IconButton>
 					<div className="btns-user">
 						<Button size="small" color="primary" onClick={() => history.goBack()}>
 							Back
