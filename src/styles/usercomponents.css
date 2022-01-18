@@ -63,12 +63,12 @@
 	display: flex;
 	flex-direction: row;
 	gap: 20px;
-	height: 90vh;
+	min-height: 90vh;
 	margin-top: 20px;
 }
 .user-main {
 	width: 50%;
-	background-color: #0e0e0e;
+	background-color: #2b2727;
 	color: white;
 }
 .user-main-wrapper {
@@ -76,14 +76,18 @@
 	flex-direction: column;
 	align-items: center;
 	gap: 20px;
+	min-height: 90vh;
 }
 .about-user {
+	padding: 20px;
 	text-align: center;
 }
 .mail-user {
 	margin-top: 25px;
 }
 .btns-user {
+	margin-top: auto;
+	margin-bottom: 10px;
 	width: 100%;
 	display: flex;
 	justify-content: space-around;
@@ -93,4 +97,10 @@
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
+}
+
+.hobby,
+.food,
+.sport {
+	padding: 30px;
 }
