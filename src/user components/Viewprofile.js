@@ -5,6 +5,7 @@ import { Mail } from '@mui/icons-material';
 import { blue } from '@mui/material/colors';
 
 export function Viewprofile({
+	id,
 	name,
 	email,
 	about,
@@ -17,6 +18,7 @@ export function Viewprofile({
 	language,
 }) {
 	const history = useHistory();
+
 	return (
 		<div className="viewprofile-wrapper">
 			<div className="user-main">
@@ -36,7 +38,11 @@ export function Viewprofile({
 						<Button size="small" color="primary" onClick={() => history.goBack()}>
 							Back
 						</Button>
-						<Button size="small" color="primary">
+						<Button
+							size="small"
+							color="primary"
+							onClick={() => history.push(`/edit-profile/${id}`)}
+						>
 							Edit Profile
 						</Button>
 					</div>
