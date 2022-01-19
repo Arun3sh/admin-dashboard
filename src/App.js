@@ -11,6 +11,7 @@ import { Redirect } from 'react-router-dom';
 import { Forgotpassword } from './user components/Forgotpassword';
 import { Register } from './user components/Register';
 import { Viewprofile } from './user components/Viewprofile';
+import { Edituserprofile } from './user components/Edituserprofile';
 
 function App() {
 	const [menu, setMenu] = useState(true);
@@ -61,6 +62,7 @@ function App() {
 						<Route path="/profile/:id">
 							{userlist.map(
 								({
+									id,
 									name,
 									email,
 									about,
@@ -73,6 +75,7 @@ function App() {
 									language,
 								}) => (
 									<Viewprofile
+										id={id}
 										name={name}
 										email={email}
 										about={about}
@@ -87,7 +90,9 @@ function App() {
 								)
 							)}
 						</Route>
-						<Route path="/edit-profile/:id"> edit profile</Route>
+						<Route path="/edit-profile/:id">
+							<Edituserprofile userlist={userlist} />
+						</Route>
 						<Route path="**">
 							<Error />
 						</Route>
