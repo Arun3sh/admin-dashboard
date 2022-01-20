@@ -104,3 +104,9 @@
 .sport {
 	padding: 30px;
 }
+
+/* Edit Profile */
+.editprofile-form {
+	display: flex;
+	flex-direction: column;
+}
