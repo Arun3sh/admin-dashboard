@@ -1,6 +1,6 @@
 import { TextField } from '@mui/material';
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Button } from '@mui/material';
@@ -9,6 +9,7 @@ export function Edituserprofile({ userlist }) {
 	const { id } = useParams();
 	let [userList] = userlist.filter((list) => list.id === id);
 	let inputstyle = { marginTop: '20px' };
+	const history = useHistory();
 
 	const [name, setName] = useState(userList.name);
 	const [email, setEmail] = useState(userList.email);
@@ -127,6 +128,9 @@ export function Edituserprofile({ userlist }) {
 				/>
 
 				<div className="add-cancel">
+					<Button variant="outlined" type="button" color="primary" onClick={() => history.goBack()}>
+						Back
+					</Button>
 					<Button
 						variant="outlined"
 						type="button"
@@ -144,7 +148,7 @@ export function Edituserprofile({ userlist }) {
 						// onClick={clearEntry}
 						startIcon={<DeleteIcon />}
 					>
-						Reset
+						Update Profile
 					</Button>
 				</div>
 			</form>
