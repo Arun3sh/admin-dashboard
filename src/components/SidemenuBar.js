@@ -36,9 +36,9 @@ export function SidemenuBar() {
 				<div className="menu-page">
 					<AiFillDashboard className="menu-icons" />
 
-					<a style={{ color: 'white' }} href="/">
+					<Link style={{ color: 'white' }} to="/">
 						Dashboard
-					</a>
+					</Link>
 					{/* <ListItemText primary="Dashboard" /> */}
 				</div>
 
@@ -172,17 +172,17 @@ export function SidemenuBar() {
 
 				<div className="menu-page">
 					<FaChartArea className="menu-icons" />
-					<a style={{ color: 'white' }} href="/charts">
+					<Link style={{ color: 'white' }} to="/charts">
 						Charts
-					</a>
+					</Link>
 					{/* <ListItemText primary="Charts" /> */}
 				</div>
 
 				<div className="menu-page">
 					<FaTable className="menu-icons" />
-					<a style={{ color: 'white' }} href="/tables">
+					<Link style={{ color: 'white' }} to="/tables">
 						Tables
-					</a>
+					</Link>
 					{/* <ListItemText primary="Tables" /> */}
 				</div>
 			</List>
