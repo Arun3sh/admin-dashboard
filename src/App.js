@@ -12,10 +12,14 @@ import { Forgotpassword } from './user components/Forgotpassword';
 import { Register } from './user components/Register';
 import { Viewprofile } from './user components/Viewprofile';
 import { Edituserprofile } from './user components/Edituserprofile';
+import { Viewuser } from './user components/Viewuser';
+import { Edituser } from './user components/Edituser';
 
 function App() {
 	const [menu, setMenu] = useState(true);
 	const [login, setLogin] = useState(false);
+	const [userName, setUserName] = useState('user');
+	const [user, setUser] = useState(false);
 	const userlist = [
 		{
 			id: '100',
@@ -38,17 +42,34 @@ function App() {
 				{menu ? '' : login ? <SidemenuBar /> : ''}
 
 				<div className="content-wrapper" style={{ width: menu ? '100%' : '72%' }}>
-					{login ? <Header menu={menu} setMenu={setMenu} login={login} setLogin={setLogin} /> : ''}
+					{login ? (
+						<Header
+							menu={menu}
+							setMenu={setMenu}
+							login={login}
+							setLogin={setLogin}
+							userName={userName}
+							user={user}
+						/>
+					) : (
+						''
+					)}
 
 					<Switch>
 						<Route exact path="/">
 							{login ? <Maincontent menu={menu} setMenu={setMenu} /> : <Redirect to="/login" />}
-							<Maincontent menu={menu} setMenu={setMenu} />
 						</Route>
 						<Route path="/charts">Welcome to charts</Route>
 						<Route path="/tables">Welcome to tables</Route>
 						<Route path="/login">
-							<Login login={login} setLogin={setLogin} />
+							<Login
+								login={login}
+								setLogin={setLogin}
+								user={user}
+								setUser={setUser}
+								userName={userName}
+								setUserName={setUserName}
+							/>
 						</Route>
 						<Route path="/forgot-password">
 							<Forgotpassword />
@@ -56,8 +77,16 @@ function App() {
 						<Route path="/create-user">
 							<Register />
 						</Route>
-						<Route path="/users">View User</Route>
-						<Route path="/edit-user/:id">Edit user</Route>
+						<Route path="/users">
+							<div className="viewuser-wrapper">
+								{userlist.map(({ id, name, email }) => (
+									<Viewuser id={id} name={name} email={email} />
+								))}
+							</div>
+						</Route>
+						<Route path="/edit-user/:id">
+							<Edituser />
+						</Route>
 						<Route path="/delete-user/:id">Delete user</Route>
 						<Route path="/profile/:id">
 							{userlist.map(
