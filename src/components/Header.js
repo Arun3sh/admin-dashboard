@@ -1,14 +1,14 @@
 import { TextField } from '@mui/material';
 import { FaSearch } from 'react-icons/fa';
-import Badge from '@mui/material/Badge';
-import Notification from '@mui/icons-material/Notifications';
-import MailIcon from '@mui/icons-material/Mail';
+// import Badge from '@mui/material/Badge';
+// import Notification from '@mui/icons-material/Notifications';
+// import MailIcon from '@mui/icons-material/Mail';
 import { Avatar, Divider, Button } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-export function Header({ menu, setMenu, login, setLogin }) {
+export function Header({ menu, setMenu, login, setLogin, userName, user }) {
 	const [showsearch, setShowsearch] = useState(false);
 	const history = useHistory();
 	return (
@@ -41,18 +41,26 @@ export function Header({ menu, setMenu, login, setLogin }) {
 				{/* Icon and user profile holder */}
 				<div className="icon-holder">
 					{/* Notification */}
-					<Badge badgeContent={4} color="error" className="badge">
+					{/* <Badge badgeContent={4} color="error" className="badge">
 						<Notification color="action" />
-					</Badge>
+					</Badge> */}
 
 					{/* Mail */}
-					<Badge badgeContent={5} color="error" className="badge">
+					{/* <Badge badgeContent={5} color="error" className="badge">
 						<MailIcon color="action" />
 					</Badge>
-					<Divider orientation="vertical" flexItem />
+					<Divider orientation="vertical" flexItem /> */}
 
 					{/* User name and profie pic */}
 					<div className="user-badge">
+						<span
+							className="profile-name"
+							style={{ cursor: 'pointer' }}
+							onClick={() => (user ? history.push('/users') : history.push('/profile/:id'))}
+						>
+							Welcome, {userName}!
+						</span>
+						<Avatar src="/broken-image.jpg" style={{ cursor: 'pointer', marginRight: '10px' }} />
 						<span
 							className="profile-name"
 							style={{ cursor: 'pointer' }}
@@ -60,7 +68,6 @@ export function Header({ menu, setMenu, login, setLogin }) {
 						>
 							Logout
 						</span>
-						<Avatar src="/broken-image.jpg" />
 					</div>
 				</div>
 			</div>
