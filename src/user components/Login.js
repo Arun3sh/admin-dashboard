@@ -4,8 +4,14 @@ import { useHistory } from 'react-router-dom';
 import { AiFillEyeInvisible } from 'react-icons/ai';
 import { InputAdornment } from '@mui/material';
 
-export function Login({ login, setLogin }) {
+export function Login({ login, setLogin, user, setUser, userName, setUserName }) {
 	const history = useHistory();
+
+	const checkPassword = () => {
+		setLogin(!login);
+		userName === 'admin' ? setUser(true) : setUser(false);
+		history.push('/');
+	};
 	return (
 		<div className="login-wrapper">
 			<div className="row-login">
@@ -14,7 +20,11 @@ export function Login({ login, setLogin }) {
 				</div>
 				<div className="email-container">
 					<label>Email</label>
-					<TextField className="email-textfield" placeholder="enter your email" />
+					<TextField
+						className="email-textfield"
+						placeholder="enter user name"
+						onChange={(e) => setUserName(e.target.value)}
+					/>
 				</div>
 				<div className="password-container">
 					<label>Password</label>
@@ -22,6 +32,7 @@ export function Login({ login, setLogin }) {
 						className="password-textfield"
 						type="password"
 						placeholder="enter your password"
+						// onChangeCapture={(e) => setUserName(e.target.value)}
 						InputProps={{
 							endAdornment: (
 								<InputAdornment position="end">
@@ -37,7 +48,7 @@ export function Login({ login, setLogin }) {
 							Forgot Password?
 						</Link>
 					</div>
-					<Button variant="outlined" onClick={() => setLogin(!login) & history.push('/')}>
+					<Button variant="outlined" onClick={checkPassword}>
 						LOGIN
 					</Button>
 					<div className="register-yet">
