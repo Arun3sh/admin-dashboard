@@ -330,10 +330,18 @@ footer {
 
 /* Fonts */
 * {
-	font-family: Nunito, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
-		Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+	font-family: 'Open Sans', sans-serif;
 }
-
+h1,
+h3,
+h5 {
+	font-weight: 650;
+}
+p,
+a,
+span {
+	font-weight: 550;
+}
 /* Media Queries */
 /* Mobile big */
 @media screen and (max-width: 425px) {

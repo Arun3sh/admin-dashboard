@@ -28,7 +28,6 @@
 	margin-left: auto;
 }
 .row-illustration {
-	background: url(../illustration.jpg);
 	width: 100%;
 }
 
@@ -129,5 +128,16 @@
 	.food,
 	.sport {
 		padding: 10px;
+	}
+	.login-wrapper {
+		display: flex;
+		flex-direction: column;
+	}
+	.row-illustration {
+		display: flex;
+		justify-content: center;
+	}
+	.row-illustration img {
+		width: 150px;
 	}
 }
