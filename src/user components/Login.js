@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { AiFillEyeInvisible } from 'react-icons/ai';
 import { InputAdornment } from '@mui/material';
+import illu from './../styles/thinkIllustration.gif';
 
 export function Login({ login, setLogin, user, setUser, userName, setUserName }) {
 	const history = useHistory();
@@ -14,24 +15,32 @@ export function Login({ login, setLogin, user, setUser, userName, setUserName })
 	};
 	return (
 		<div className="login-wrapper">
+			{/* Illustration Container */}
+			<div className="row-illustration">
+				<img src={illu} alt="Illustration" aria-label="Think image" />
+			</div>
+
+			{/* Login Container */}
 			<div className="row-login">
 				<div className="login-heading">
 					<h2>Login</h2>
 				</div>
 				<div className="email-container">
-					<label>Email</label>
 					<TextField
+						id="outlined-basic"
+						variant="outlined"
 						className="email-textfield"
-						placeholder="enter user name"
+						label="Enter User Name"
 						onChange={(e) => setUserName(e.target.value)}
 					/>
 				</div>
 				<div className="password-container">
-					<label>Password</label>
 					<TextField
+						id="outlined-basic"
+						variant="outlined"
 						className="password-textfield"
 						type="password"
-						placeholder="enter your password"
+						label="Enter Password"
 						// onChangeCapture={(e) => setUserName(e.target.value)}
 						InputProps={{
 							endAdornment: (
@@ -58,7 +67,6 @@ export function Login({ login, setLogin, user, setUser, userName, setUserName })
 					</div>
 				</div>
 			</div>
-			<div className="row-illustration"></div>
 		</div>
 	);
 }
