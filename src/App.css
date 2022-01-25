@@ -337,11 +337,15 @@ h3,
 h5 {
 	font-weight: 650;
 }
-p,
-a,
 span {
 	font-weight: 550;
 }
+p,
+a {
+	/* color: gray; */
+	font-weight: 400;
+}
+
 /* Media Queries */
 /* Mobile big */
 @media screen and (max-width: 425px) {
