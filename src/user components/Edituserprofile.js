@@ -2,12 +2,16 @@ import { TextField } from '@mui/material';
 import { useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 import { Button } from '@mui/material';
+import { Error } from '../components/ErrorPage';
 
 export function Edituserprofile({ userlist }) {
 	const { id } = useParams();
 	let [userList] = userlist.filter((list) => list.id === id);
+	return userList !== 'undefined' ? <ShowForm userList={userList} /> : <Error />;
+}
+
+function ShowForm({ userList }) {
 	let inputstyle = { marginTop: '20px' };
 	const history = useHistory();
 
@@ -128,27 +132,24 @@ export function Edituserprofile({ userlist }) {
 				/>
 
 				<div className="add-cancel">
-					<Button variant="outlined" type="button" color="primary" onClick={() => history.goBack()}>
-						Back
+					<Button
+						variant="outlined"
+						type="button"
+						className="updatecancel"
+						color="error"
+						onClick={() => history.goBack()}
+					>
+						Cancel
 					</Button>
 					<Button
 						variant="outlined"
 						type="button"
-						className="addBtn"
-						// onClick={editMovie}
+						className="updateBtn"
+						// onClick={editProfile}
+						onClick={() => history.goBack()}
 						startIcon={<EditIcon />}
 					>
-						Update Movie
-					</Button>
-					<Button
-						variant="outlined"
-						type="button"
-						className="resetBtn"
-						color="error"
-						// onClick={clearEntry}
-						startIcon={<DeleteIcon />}
-					>
-						Update Profile
+						Update
 					</Button>
 				</div>
 			</form>
