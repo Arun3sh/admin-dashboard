@@ -2,10 +2,13 @@ import { TextField } from '@mui/material';
 import { FaSearch } from 'react-icons/fa';
 import { Avatar, Button } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import { authContext } from '../App';
 
-export function Header({ menu, setMenu, login, setLogin, userName, user }) {
+export function Header() {
+	const { login, setLogin, menu, setMenu, userName, user } = useContext(authContext);
+
 	const [showsearch, setShowsearch] = useState(false);
 	const history = useHistory();
 	return (

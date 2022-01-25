@@ -1,13 +1,13 @@
 import { Button, TextField } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-import { AiFillEyeInvisible } from 'react-icons/ai';
-import { InputAdornment } from '@mui/material';
 import illu from './../styles/thinkIllustration.gif';
+import { useContext } from 'react';
+import { authContext } from '../App';
 
-export function Login({ login, setLogin, user, setUser, userName, setUserName }) {
+export function Login() {
 	const history = useHistory();
-
+	const { login, setLogin, setUser, userName, setUserName } = useContext(authContext);
 	const checkPassword = () => {
 		setLogin(!login);
 		userName === 'admin' ? setUser(true) : setUser(false);
@@ -42,13 +42,6 @@ export function Login({ login, setLogin, user, setUser, userName, setUserName })
 						type="password"
 						label="Enter Password"
 						// onChangeCapture={(e) => setUserName(e.target.value)}
-						InputProps={{
-							endAdornment: (
-								<InputAdornment position="end">
-									<AiFillEyeInvisible />
-								</InputAdornment>
-							),
-						}}
 					/>
 				</div>
 				<div className="login-btn-container">
