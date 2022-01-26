@@ -8,13 +8,7 @@ export function Register() {
 			<h3>Create an Account</h3>
 			<TextField
 				id="outlined-basic"
-				label="First Name"
-				variant="outlined"
-				style={{ width: '40vh' }}
-			/>
-			<TextField
-				id="outlined-basic"
-				label="Last Name"
+				label="User Name"
 				variant="outlined"
 				style={{ width: '40vh' }}
 			/>
