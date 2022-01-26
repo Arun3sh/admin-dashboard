@@ -5,7 +5,7 @@ import { Header } from './components/Header';
 import { Maincontent } from './components/Maincontent';
 import { Error } from './components/ErrorPage';
 import { Login } from './user components/Login';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { useState, createContext } from 'react';
 import { Forgotpassword } from './user components/Forgotpassword';
 import { Register } from './user components/Register';
@@ -53,7 +53,20 @@ function App() {
 	if (!login) {
 		return (
 			<authContext.Provider value={modes}>
-				<Login />
+				<Switch>
+					<Route exact path="/">
+						<Redirect to="/login" />
+					</Route>
+					<Route path="/login">
+						<Login />
+					</Route>
+					<Route path="/forgot-password">
+						<Forgotpassword />
+					</Route>
+					<Route path="/create-user">
+						<Register />
+					</Route>
+				</Switch>
 				<footer>Copyright © Your Website 2020</footer>
 			</authContext.Provider>
 		);
