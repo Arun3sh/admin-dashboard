@@ -13,6 +13,7 @@ import { Viewprofile } from './user components/Viewprofile';
 import { Edituserprofile } from './user components/Edituserprofile';
 import { Viewuser } from './user components/Viewuser';
 import { Edituser } from './user components/Edituser';
+import { Getalluserdata } from './user components/Getalluser';
 
 export const authContext = createContext(null);
 
@@ -21,6 +22,7 @@ function App() {
 	const [login, setLogin] = useState(false);
 	const [userName, setUserName] = useState('user');
 	const [user, setUser] = useState(false);
+	const [userId, setUserId] = useState(null);
 
 	const userlist = [
 		{
@@ -39,6 +41,11 @@ function App() {
 		},
 	];
 
+	// To TRY OUT FOR GETTING USERLIST FOR ADMIN
+	// const userValue = <Getalluserdata />;
+	// console.log(userValue);
+
+	// All field items are stored in object to be passed as value in context
 	const modes = {
 		menu: menu,
 		setMenu: setMenu,
@@ -48,8 +55,11 @@ function App() {
 		setUserName: setUserName,
 		user: user,
 		setUser: setUser,
+		userId: userId,
+		setUserId: setUserId,
 	};
 
+	// If user hasn't logged in the following routes only will work
 	if (!login) {
 		return (
 			<authContext.Provider value={modes}>
@@ -66,11 +76,16 @@ function App() {
 					<Route path="/create-user">
 						<Register />
 					</Route>
+					<Route path="**">
+						<Error />
+					</Route>
 				</Switch>
 				<footer>Copyright © Your Website 2020</footer>
 			</authContext.Provider>
 		);
 	}
+
+	// If the user is logged in all the following routes will work
 	return (
 		<authContext.Provider value={modes}>
 			<div className="App">
@@ -107,38 +122,10 @@ function App() {
 							</Route>
 							<Route path="/delete-user/:id">Delete user</Route>
 							<Route path="/profile/:id">
-								{userlist.map(
-									({
-										id,
-										name,
-										email,
-										about,
-										profilepic,
-										coverpic,
-										food,
-										sport,
-										hobby,
-										location,
-										language,
-									}) => (
-										<Viewprofile
-											id={id}
-											name={name}
-											email={email}
-											about={about}
-											profilepic={profilepic}
-											coverpic={coverpic}
-											food={food}
-											sport={sport}
-											hobby={hobby}
-											location={location}
-											language={language}
-										/>
-									)
-								)}
+								<Viewprofile />
 							</Route>
 							<Route path="/edit-profile/:id">
-								<Edituserprofile userlist={userlist} />
+								<Edituserprofile />
 							</Route>
 							<Route path="**">
 								<Error />
