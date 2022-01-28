@@ -1,20 +1,31 @@
-import { TextField } from '@mui/material';
-import { useState } from 'react';
+import { TextField, Button } from '@mui/material';
+import { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
-import { Button } from '@mui/material';
 import { Error } from '../components/ErrorPage';
 
-export function Edituserprofile({ userlist }) {
+export function Edituserprofile() {
 	const { id } = useParams();
-	let [userList] = userlist.filter((list) => list.id === id);
-	return userList !== 'undefined' ? <ShowForm userList={userList} /> : <Error />;
+
+	const [userList, setUserList] = useState(null);
+	// To get user data based on loged in id
+	useEffect(() => {
+		fetch(`https://61988da7164fa60017c230e5.mockapi.io/userdetails/${id}`, {
+			method: 'GET',
+		})
+			.then((data) => data.json())
+			.then((ud) => setUserList(ud));
+	}, []);
+
+	return userList ? <ShowForm userList={userList} /> : <Error />;
 }
 
+// Higher order function to edit user profile
 function ShowForm({ userList }) {
 	let inputstyle = { marginTop: '20px' };
 	const history = useHistory();
 
+	// To store and pass the value from user
 	const [name, setName] = useState(userList.name);
 	const [email, setEmail] = useState(userList.email);
 	const [about, setAbout] = useState(userList.about);
@@ -26,6 +37,26 @@ function ShowForm({ userList }) {
 	const [location, setLocation] = useState(userList.location);
 	const [language, setLanguage] = useState(userList.language);
 
+	// Function to save the edited data
+	const editProfile = () => {
+		const userData = {
+			name,
+			email,
+			about,
+			profilepic,
+			coverpic,
+			food,
+			sport,
+			hobby,
+			location,
+			language,
+		};
+		fetch(`https://61988da7164fa60017c230e5.mockapi.io/userdetails/${userList.id}`, {
+			method: 'PUT',
+			body: JSON.stringify(userData),
+			headers: { 'Content-type': 'application/json' },
+		}).then(() => history.push(`/profile/${userList.id}`));
+	};
 	return (
 		<div className="editprofile-wrapper">
 			<h3>Edit Profile</h3>
@@ -145,8 +176,7 @@ function ShowForm({ userList }) {
 						variant="outlined"
 						type="button"
 						className="updateBtn"
-						// onClick={editProfile}
-						onClick={() => history.goBack()}
+						onClick={editProfile}
 						startIcon={<EditIcon />}
 					>
 						Update
