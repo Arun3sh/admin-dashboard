@@ -7,8 +7,8 @@ import { useHistory } from 'react-router-dom';
 import { authContext } from '../App';
 
 export function Header() {
-	const { login, setLogin, menu, setMenu, userName, user } = useContext(authContext);
-
+	const { login, setLogin, menu, setMenu, userName, user, userId } = useContext(authContext);
+	// console.log(userId);
 	const [showsearch, setShowsearch] = useState(false);
 	const history = useHistory();
 	return (
@@ -45,7 +45,7 @@ export function Header() {
 						<span
 							className="profile-name"
 							style={{ cursor: 'pointer' }}
-							onClick={() => (user ? history.push('/users') : history.push('/profile/:id'))}
+							onClick={() => (user ? history.push('/users') : history.push(`/profile/${userId}`))}
 						>
 							Welcome, {userName}!
 						</span>
