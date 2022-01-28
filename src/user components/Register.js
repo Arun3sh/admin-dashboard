@@ -9,7 +9,7 @@ export function Register() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [cpassword, setCpassword] = useState('');
-	const about = 'enter about';
+	const about = '';
 	const profilepic = '';
 	const coverpic = '';
 	const food = '';
@@ -22,32 +22,40 @@ export function Register() {
 		if (password !== cpassword) {
 			return alert("Entered Passwords Doesn't match");
 		}
+
+		// To make sure same user name are not taken
 		const checkUserName = (users) => {
-			users.filter((e) => e.name === name);
+			const confirmName = users.filter((e) => e.name === name);
+			if (confirmName.length > 1) {
+				return alert('User name already taken');
+			} else {
+				const userData = {
+					name,
+					email,
+					password,
+					about,
+					profilepic,
+					coverpic,
+					food,
+					sport,
+					hobby,
+					location,
+					language,
+				};
+				fetch('https://61988da7164fa60017c230e5.mockapi.io/userdetails/', {
+					method: 'POST',
+					body: JSON.stringify(userData),
+					headers: { 'Content-type': 'application/json' },
+				}).then(() => history.push('/login'));
+			}
 		};
+
+		// To check for user name
 		fetch('https://61988da7164fa60017c230e5.mockapi.io/userdetails/', {
 			method: 'GET',
 		})
 			.then((data) => data.json())
 			.then((users) => checkUserName(users));
-		const userData = {
-			name,
-			email,
-			password,
-			about,
-			profilepic,
-			coverpic,
-			food,
-			sport,
-			hobby,
-			location,
-			language,
-		};
-		fetch('https://61988da7164fa60017c230e5.mockapi.io/userdetails/', {
-			method: 'POST',
-			body: JSON.stringify(userData),
-			headers: { 'Content-type': 'application/json' },
-		}).then(() => history.push('/login'));
 	};
 	return (
 		<div className="register-wrapper">

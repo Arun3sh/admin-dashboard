@@ -1,32 +1,37 @@
-import { Avatar } from '@mui/material';
-import { Button, IconButton } from '@mui/material';
-import { useHistory } from 'react-router-dom';
+import { Avatar, Button, IconButton } from '@mui/material';
+import { useHistory, useParams } from 'react-router-dom';
 import { Mail } from '@mui/icons-material';
 import { blue } from '@mui/material/colors';
+import { useEffect, useState } from 'react';
 
-export function Viewprofile({
-	id,
-	name,
-	email,
-	about,
-	profilepic,
-	coverpic,
-	food,
-	sport,
-	hobby,
-	location,
-	language,
-}) {
+export function Viewprofile() {
+	const { id } = useParams();
+	// console.log(id);
+	const [userData, setUserData] = useState(null);
+
+	// To get user profile details from the database and store the data in userData
+	useEffect(() => {
+		fetch(`https://61988da7164fa60017c230e5.mockapi.io/userdetails/${id}`, {
+			method: 'GET',
+		})
+			.then((data) => data.json())
+			.then((ud) => setUserData(ud));
+	}, []);
+	return userData ? <ShowProfile userData={userData} /> : '';
+}
+
+// higher order function to show user profile
+function ShowProfile({ userData }) {
 	const history = useHistory();
 
 	return (
 		<div className="viewprofile-wrapper">
 			<div className="user-main">
 				<div className="user-main-wrapper">
-					<h3>{name}</h3>
-					<Avatar className="profile-pic" alt={name} src={profilepic} />
-					<p className="about-user">{about}</p>
-					<p className="location">{location}</p>
+					<h3>{userData.name}</h3>
+					<Avatar className="profile-pic" alt={userData.name} src={userData.profilepic} />
+					<p className="about-user">{userData.about}</p>
+					<p className="location">{userData.location}</p>
 
 					{/* {email} */}
 					<IconButton className="mail-user">
@@ -41,7 +46,7 @@ export function Viewprofile({
 						<Button
 							size="small"
 							color="primary"
-							onClick={() => history.push(`/edit-profile/${id}`)}
+							onClick={() => history.push(`/edit-profile/${userData.id}`)}
 						>
 							Edit Profile
 						</Button>
@@ -50,7 +55,7 @@ export function Viewprofile({
 			</div>
 			<div className="user-other">
 				<div className="hobby">
-					<h3>Hobby {hobby} </h3>
+					<h3>Hobby {userData.hobby} </h3>
 					<p>
 						A hobby is considered to be a regular activity that is done for enjoyment, typically
 						during one's leisure time. Hobbies include collecting themed items and objects, engaging
@@ -58,7 +63,7 @@ export function Viewprofile({
 					</p>
 				</div>
 				<div className="food">
-					<h3>Favourite Food {food}</h3>
+					<h3>Favourite Food {userData.food}</h3>
 					<p>
 						A hobby is considered to be a regular activity that is done for enjoyment, typically
 						during one's leisure time. Hobbies include collecting themed items and objects, engaging
@@ -66,7 +71,7 @@ export function Viewprofile({
 					</p>
 				</div>
 				<div className="sport">
-					<h3>Favourite Sport {sport}</h3>
+					<h3>Favourite Sport {userData.sport}</h3>
 					<p>
 						A hobby is considered to be a regular activity that is done for enjoyment, typically
 						during one's leisure time. Hobbies include collecting themed items and objects, engaging
