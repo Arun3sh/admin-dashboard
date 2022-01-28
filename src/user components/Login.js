@@ -4,14 +4,36 @@ import { useHistory } from 'react-router-dom';
 import illu from './../styles/thinkIllustration.gif';
 import { useContext } from 'react';
 import { authContext } from '../App';
+import { useState } from 'react';
 
 export function Login() {
 	const history = useHistory();
-	const { login, setLogin, setUser, userName, setUserName } = useContext(authContext);
+	const { login, setLogin, setUser, userName, setUserName, setUserId } = useContext(authContext);
+	const [passkey, setPasskey] = useState(null);
+
+	// Function to check user name and password
 	const checkPassword = () => {
-		setLogin(!login);
-		userName === 'admin' ? setUser(true) : setUser(false);
-		history.push('/');
+		// this function will get the user data to confirm the input
+		const checkUser = (users) => {
+			const confirmName = users.filter((e) => e.name === userName && e.password === passkey);
+			const confirmedData = [...confirmName][0];
+			// If the value is 0 that means user not found
+			if (confirmName === 'undefined' || confirmName.length < 1) {
+				return alert('Incorrect username or password');
+			} else {
+				setLogin(!login);
+				userName === 'admin' ? setUser(true) : setUser(false);
+				setUserId(confirmedData.id);
+				history.push('/');
+			}
+		};
+
+		// First all the user data is brought and then passed into func to check username and password
+		fetch('https://61988da7164fa60017c230e5.mockapi.io/userdetails/', {
+			method: 'GET',
+		})
+			.then((data) => data.json())
+			.then((users) => checkUser(users));
 	};
 	return (
 		<div className="login-wrapper">
@@ -41,7 +63,7 @@ export function Login() {
 						className="password-textfield"
 						type="password"
 						label="Enter Password"
-						// onChangeCapture={(e) => setUserName(e.target.value)}
+						onChange={(e) => setPasskey(e.target.value)}
 					/>
 				</div>
 				<div className="login-btn-container">
