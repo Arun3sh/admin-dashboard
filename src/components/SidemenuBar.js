@@ -15,8 +15,13 @@ import {
 } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { authContext } from '../App';
 
 export function SidemenuBar() {
+	const { userName } = useContext(authContext);
+	const basedonuser = { display: userName === 'admin' ? 'block' : 'none' };
+	const userBased = { display: userName !== 'admin' ? 'block' : 'none' };
 	return (
 		<nav className="sidemenu">
 			<List
@@ -117,7 +122,7 @@ export function SidemenuBar() {
 
 				{/* profile pages */}
 
-				<Accordion className="pages" elevation={0}>
+				<Accordion className="pages" elevation={0} style={userBased}>
 					<AccordionSummary
 						expandIcon={<ExpandMore />}
 						aria-controls="panel1a-content"
@@ -141,7 +146,7 @@ export function SidemenuBar() {
 				</Accordion>
 
 				{/* user pages */}
-				<Accordion className="pages" elevation={0}>
+				<Accordion className="pages" elevation={0} style={basedonuser}>
 					<AccordionSummary
 						expandIcon={<ExpandMore />}
 						aria-controls="panel1a-content"
