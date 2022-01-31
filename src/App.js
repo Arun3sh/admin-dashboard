@@ -6,14 +6,13 @@ import { Maincontent } from './components/Maincontent';
 import { Error } from './components/ErrorPage';
 import { Login } from './user components/Login';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { useState, createContext } from 'react';
+import { useState, createContext, useEffect } from 'react';
 import { Forgotpassword } from './user components/Forgotpassword';
 import { Register } from './user components/Register';
 import { Viewprofile } from './user components/Viewprofile';
 import { Edituserprofile } from './user components/Edituserprofile';
 import { Viewuser } from './user components/Viewuser';
 import { Edituser } from './user components/Edituser';
-import { Getalluserdata } from './user components/Getalluser';
 
 export const authContext = createContext(null);
 
@@ -24,26 +23,19 @@ function App() {
 	const [user, setUser] = useState(false);
 	const [userId, setUserId] = useState(null);
 
-	const userlist = [
-		{
-			id: '100',
-			name: 'Arun',
-			email: 'm.aruneshwar@gmail.com',
-			about:
-				"I'm a Web Developer currenty working on my dashboard project. Always on the look out for upskilling me!",
-			profilepic: 'https://www.themoviedb.org/t/p/w1280//zHJYRHI5HkQuwLW5KyeXGQ596u7.jpg',
-			coverpic: 'https://wallpapercave.com/wp/HByeKGm.jpg',
-			food: 'Dosa, Briyani',
-			sport: 'cricket, football',
-			hobby: 'watching movies and series',
-			location: 'Coimbatore',
-			language: 'english, tamil',
-		},
-	];
-
-	// To TRY OUT FOR GETTING USERLIST FOR ADMIN
-	// const userValue = <Getalluserdata />;
-	// console.log(userValue);
+	const userlist = Getalluserdata();
+	function Getalluserdata() {
+		const [userValue, setUserValue] = useState('1');
+		useEffect(() => {
+			console.log('hi');
+			fetch('https://61988da7164fa60017c230e5.mockapi.io/userdetails/', {
+				method: 'GET',
+			})
+				.then((data) => data.json())
+				.then((users) => setUserValue(users));
+		}, []);
+		return userValue;
+	}
 
 	// All field items are stored in object to be passed as value in context
 	const modes = {
