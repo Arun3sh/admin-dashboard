@@ -88,7 +88,7 @@ export function Othercontent() {
 						<Divider className="pic-divider" variant="fullWidth" />
 						<div className="progress-data">
 							{project.map(({ title, heading, value }, index) => (
-								<ProgressBar title={title} heading={heading} value={value} index={index} />
+								<ProgressBar title={title} heading={heading} value={value} key={index} />
 							))}
 						</div>
 					</div>

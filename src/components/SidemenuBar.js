@@ -19,7 +19,7 @@ import { useContext } from 'react';
 import { authContext } from '../App';
 
 export function SidemenuBar() {
-	const { userName } = useContext(authContext);
+	const { userName, userId } = useContext(authContext);
 	const basedonuser = { display: userName === 'admin' ? 'block' : 'none' };
 	const userBased = { display: userName !== 'admin' ? 'block' : 'none' };
 	return (
@@ -44,7 +44,6 @@ export function SidemenuBar() {
 					<Link style={{ color: 'white' }} to="/">
 						Dashboard
 					</Link>
-					{/* <ListItemText primary="Dashboard" /> */}
 				</div>
 
 				<Divider variant="fullWidth" component="li" />
@@ -136,10 +135,10 @@ export function SidemenuBar() {
 					<AccordionDetails>
 						<List className="accordian-list">
 							<ListItemButton>
-								<Link to="/profile/:id">View Profile</Link>
+								<Link to={`/profile/${userId}`}>View Profile</Link>
 							</ListItemButton>
 							<ListItemButton>
-								<Link to="/edit-profile/:id">Edit Profile</Link>
+								<Link to={`/edit-profile/${userId}`}>Edit Profile</Link>
 							</ListItemButton>
 						</List>
 					</AccordionDetails>
@@ -165,12 +164,6 @@ export function SidemenuBar() {
 							<ListItemButton>
 								<Link to="/create-user">Create User</Link>
 							</ListItemButton>
-							<ListItemButton>
-								<Link to="/edit-user/:id">Edit User</Link>
-							</ListItemButton>
-							<ListItemButton>
-								<Link to="/delete-user/:id">Delete User</Link>
-							</ListItemButton>
 						</List>
 					</AccordionDetails>
 				</Accordion>
@@ -180,7 +173,6 @@ export function SidemenuBar() {
 					<Link style={{ color: 'white' }} to="/charts">
 						Charts
 					</Link>
-					{/* <ListItemText primary="Charts" /> */}
 				</div>
 
 				<div className="menu-page">
@@ -188,7 +180,6 @@ export function SidemenuBar() {
 					<Link style={{ color: 'white' }} to="/tables">
 						Tables
 					</Link>
-					{/* <ListItemText primary="Tables" /> */}
 				</div>
 			</List>
 		</nav>

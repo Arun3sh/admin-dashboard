@@ -112,7 +112,6 @@ function App() {
 							<Route path="/edit-user/:id">
 								<Edituser />
 							</Route>
-							<Route path="/delete-user/:id">Delete user</Route>
 							<Route path="/profile/:id">
 								<Viewprofile />
 							</Route>
