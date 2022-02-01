@@ -79,6 +79,7 @@ export function Register() {
 			<TextField
 				id="outlined-basic"
 				value={password}
+				type="password"
 				label="Set Password"
 				variant="outlined"
 				onChange={(event) => setPassword(event.target.value)}
@@ -87,6 +88,7 @@ export function Register() {
 			<TextField
 				id="outlined-basic"
 				value={cpassword}
+				type="password"
 				label="Confirm Password"
 				variant="outlined"
 				onChange={(event) => setCpassword(event.target.value)}
