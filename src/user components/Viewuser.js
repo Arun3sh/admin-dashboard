@@ -1,31 +1,60 @@
 import { Button } from '@mui/material';
 import { useHistory } from 'react-router-dom';
+import { Getallusers } from './Getalluser';
+import { useState, useEffect } from 'react';
 
-export function Viewuser({ id, name, email }) {
+export function Viewuser() {
+	const [userValue, setUserValue] = useState([]);
+	// const userlist = Getalluserdata();
+	const Getalluserdata = () => {
+		fetch('https://61988da7164fa60017c230e5.mockapi.io/userdetails/', {
+			method: 'GET',
+		})
+			.then((data) => data.json())
+			.then((users) => setUserValue(users));
+
+		// return userValue;
+	};
+	useEffect(Getalluserdata, []);
+	const deleteUser = (id) => {
+		fetch(`https://61988da7164fa60017c230e5.mockapi.io/userdetails/${id}`, {
+			method: 'DELETE',
+		}).then(() => Getalluserdata());
+	};
 	const history = useHistory();
 	return (
-		<div className="user-list-content">
-			<div className="user-list-col1">{name}</div>
-			<div className="user-list-col2">{email}</div>
-			<div className="user-list-col3">
-				<Button
-					type="button"
-					color="primary"
-					aria-label="edit user"
-					onClick={() => history.push(`/edit-user/${id}`)}
-				>
-					Edit User
-				</Button>
-
-				<Button
-					type="button"
-					color="error"
-					aria-label="edit user"
-					onClick={() => history.push('/delete-user/:id')}
-				>
-					Delete User
-				</Button>
-			</div>
+		<div>
+			{userValue
+				.filter((e) => e.name !== 'admin')
+				.map(({ id, name, email }) => (
+					<Getallusers
+						id={id}
+						name={name}
+						email={email}
+						editButton={
+							<Button
+								type="button"
+								size="small"
+								color="primary"
+								aria-label="edit user"
+								onClick={() => history.push(`/edit-user/${id}`)}
+							>
+								Edit
+							</Button>
+						}
+						deleteButton={
+							<Button
+								type="button"
+								size="small"
+								color="error"
+								aria-label="delete"
+								onClick={() => deleteUser(id)}
+							>
+								Delete
+							</Button>
+						}
+					/>
+				))}
 		</div>
 	);
 }

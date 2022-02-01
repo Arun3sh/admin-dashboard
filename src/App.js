@@ -23,20 +23,6 @@ function App() {
 	const [user, setUser] = useState(false);
 	const [userId, setUserId] = useState(null);
 
-	const userlist = Getalluserdata();
-	function Getalluserdata() {
-		const [userValue, setUserValue] = useState('1');
-		useEffect(() => {
-			console.log('hi');
-			fetch('https://61988da7164fa60017c230e5.mockapi.io/userdetails/', {
-				method: 'GET',
-			})
-				.then((data) => data.json())
-				.then((users) => setUserValue(users));
-		}, []);
-		return userValue;
-	}
-
 	// All field items are stored in object to be passed as value in context
 	const modes = {
 		menu: menu,
@@ -104,9 +90,7 @@ function App() {
 							</Route>
 							<Route path="/users">
 								<div className="viewuser-wrapper">
-									{userlist.map(({ id, name, email }) => (
-										<Viewuser id={id} name={name} email={email} />
-									))}
+									<Viewuser />
 								</div>
 							</Route>
 							<Route path="/edit-user/:id">
