@@ -64,6 +64,7 @@ export function Login() {
 						type="password"
 						label="Enter Password"
 						onChange={(e) => setPasskey(e.target.value)}
+						onKeyPress={(e) => e.key === 'Enter' && checkPassword()}
 					/>
 				</div>
 				<div className="login-btn-container">
