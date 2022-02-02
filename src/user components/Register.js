@@ -1,53 +1,37 @@
 import { useHistory, Link } from 'react-router-dom';
 import { Button, TextField } from '@mui/material';
-import { useState } from 'react';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
 
 export function Register() {
 	const history = useHistory();
 
-	const [name, setName] = useState('');
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
-	const [cpassword, setCpassword] = useState('');
-	const about = '';
-	const profilepic = '';
-	const coverpic = '';
-	const food = '';
-	const sport = '';
-	const hobby = '';
-	const location = '';
-	const language = '';
-
 	const register = () => {
-		if (password !== cpassword) {
-			return alert("Entered Passwords Doesn't match");
-		}
-
 		// To make sure same user name are not taken
 		const checkUserName = (users) => {
-			const confirmName = users.filter((e) => e.name === name);
-			if (confirmName.length > 1) {
-				return alert('User name already taken');
-			} else {
-				const userData = {
-					name,
-					email,
-					password,
-					about,
-					profilepic,
-					coverpic,
-					food,
-					sport,
-					hobby,
-					location,
-					language,
-				};
-				fetch('https://61988da7164fa60017c230e5.mockapi.io/userdetails/', {
-					method: 'POST',
-					body: JSON.stringify(userData),
-					headers: { 'Content-type': 'application/json' },
-				}).then(() => history.push('/login'));
+			// To make sure not entering admin and undefined
+			if (values.name.match('admin', 'undefined')) {
+				resetForm();
+				return alert('😀 Nice try');
 			}
+
+			// To check if user name already taken
+			const confirmName = users.filter((e) => e.name === values.name);
+			const confirmEmail = users.filter((e) => e.email === values.email);
+			if (confirmName.length > 1) {
+				resetForm();
+				return alert('User name already taken');
+			}
+			if (confirmEmail.length > 1) {
+				resetForm();
+				return alert('Email Id exists click forgot password or try login');
+			}
+
+			fetch('https://61988da7164fa60017c230e5.mockapi.io/userdetails/', {
+				method: 'POST',
+				body: JSON.stringify(values),
+				headers: { 'Content-type': 'application/json' },
+			}).then(() => history.push('/login'));
 		};
 
 		// To check for user name
@@ -57,46 +41,100 @@ export function Register() {
 			.then((data) => data.json())
 			.then((users) => checkUserName(users));
 	};
+
+	const formValidationSchema = yup.object({
+		name: yup.string().min(4).required('please enter a unique user name'),
+		email: yup.string().email().required('email id is required'),
+		password: yup
+			.string()
+			.min(4, 'Min 4 characters')
+			.required('Min 4 characters')
+			.matches(
+				/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/,
+				'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character'
+			),
+		cpassword: yup
+			.string()
+			.required('Please confirm the password')
+			.oneOf([yup.ref('password')], 'Passwords do not match'),
+	});
+	const { values, handleBlur, handleChange, handleSubmit, errors, touched, resetForm } = useFormik({
+		initialValues: {
+			name: '',
+			email: '',
+			password: '',
+			cpassword: '',
+			about: '',
+			profilepic: '',
+			coverpic: '',
+			food: '',
+			sport: '',
+			hobby: '',
+			location: '',
+			language: '',
+		},
+		validationSchema: formValidationSchema,
+		onSubmit: () => register(),
+	});
 	return (
 		<div className="register-wrapper">
 			<h3>Create an Account</h3>
-			<TextField
-				id="outlined-basic"
-				value={name}
-				label="User Name"
-				variant="outlined"
-				onChange={(event) => setName(event.target.value)}
-				style={{ width: '40vh' }}
-			/>
-			<TextField
-				id="outlined-basic"
-				value={email}
-				label="Enter email id"
-				variant="outlined"
-				onChange={(event) => setEmail(event.target.value)}
-				style={{ width: '40vh' }}
-			/>
-			<TextField
-				id="outlined-basic"
-				value={password}
-				type="password"
-				label="Set Password"
-				variant="outlined"
-				onChange={(event) => setPassword(event.target.value)}
-				style={{ width: '40vh' }}
-			/>
-			<TextField
-				id="outlined-basic"
-				value={cpassword}
-				type="password"
-				label="Confirm Password"
-				variant="outlined"
-				onChange={(event) => setCpassword(event.target.value)}
-				style={{ width: '40vh' }}
-			/>
-			<Button variant="outlined" color="success" onClick={register}>
-				Submit
-			</Button>
+			<form className="registeruser-form" onSubmit={handleSubmit} autoComplete="off">
+				<TextField
+					id="outlined-basic"
+					name="name"
+					value={values.name}
+					label="User Name"
+					variant="outlined"
+					style={{ width: '40vh' }}
+					onChange={handleChange}
+					onBlur={handleBlur}
+					error={errors.name && touched.name}
+					helperText={errors.name && touched.name ? errors.name : ''}
+				/>
+				<TextField
+					id="outlined-basic"
+					name="email"
+					value={values.email}
+					label="Enter email id"
+					variant="outlined"
+					style={{ width: '40vh' }}
+					onChange={handleChange}
+					onBlur={handleBlur}
+					error={errors.email && touched.email}
+					helperText={errors.email && touched.email ? errors.email : ''}
+				/>
+				<TextField
+					id="outlined-basic"
+					name="password"
+					value={values.password}
+					type="password"
+					label="Set Password"
+					variant="outlined"
+					style={{ width: '40vh' }}
+					onChange={handleChange}
+					onBlur={handleBlur}
+					error={errors.password && touched.password}
+					helperText={errors.password && touched.password ? errors.password : ''}
+				/>
+				<TextField
+					id="outlined-basic"
+					name="cpassword"
+					value={values.cpassword}
+					type="password"
+					label="Confirm Password"
+					variant="outlined"
+					style={{ width: '40vh' }}
+					onChange={handleChange}
+					onBlur={handleBlur}
+					error={errors.cpassword && touched.cpassword}
+					helperText={errors.cpassword && touched.cpassword ? errors.cpassword : ''}
+				/>
+				<Button variant="outlined" type="submit" color="success">
+					Submit
+				</Button>
+			</form>
+
 			<div className="user-already">
 				<Link to="/login" aria-label="login">
 					Already an user? Login
