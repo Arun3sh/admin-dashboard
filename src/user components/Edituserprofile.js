@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
 import { Error } from '../components/ErrorPage';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
 
 export function Edituserprofile() {
 	const { id } = useParams();
@@ -25,61 +27,60 @@ function ShowForm({ userList }) {
 	let inputstyle = { marginTop: '20px' };
 	const history = useHistory();
 
-	// To store and pass the value from user
-	const [name, setName] = useState(userList.name);
-	const [email, setEmail] = useState(userList.email);
-	const [about, setAbout] = useState(userList.about);
-	const [profilepic, SetProfilepic] = useState(userList.profilepic);
-	const [coverpic, SetCoverpic] = useState(userList.coverpic);
-	const [food, setFood] = useState(userList.food);
-	const [sport, setSport] = useState(userList.sport);
-	const [hobby, setHobby] = useState(userList.hobby);
-	const [location, setLocation] = useState(userList.location);
-	const [language, setLanguage] = useState(userList.language);
-
 	// Function to save the edited data
-	const editProfile = () => {
-		const userData = {
-			name,
-			email,
-			about,
-			profilepic,
-			coverpic,
-			food,
-			sport,
-			hobby,
-			location,
-			language,
-		};
+	const editProfile = (userData) => {
 		fetch(`https://61988da7164fa60017c230e5.mockapi.io/userdetails/${userList.id}`, {
 			method: 'PUT',
 			body: JSON.stringify(userData),
 			headers: { 'Content-type': 'application/json' },
 		}).then(() => history.push(`/profile/${userList.id}`));
 	};
+
+	const formValidationSchema = yup.object({
+		email: yup.string().email('Invalid email format').required('please enter your email'),
+		about: yup.string().required('please add something about your free spirit'),
+		food: yup.string().required('please add your favourite food'),
+		sport: yup.string().required('please add your favourite sport'),
+		hobby: yup.string().required('please add your hobby'),
+		location: yup.string().required('please enter your location'),
+	});
+
+	const { errors, values, handleSubmit, handleChange, handleBlur, touched } = useFormik({
+		initialValues: {
+			name: `${userList.name}`,
+			email: `${userList.email}`,
+			about: `${userList.about}`,
+			profilepic: `${userList.profilepic}`,
+			coverpic: `${userList.coverpic}`,
+			food: `${userList.food}`,
+			sport: `${userList.sport}`,
+			hobby: `${userList.hobby}`,
+			location: `${userList.location}`,
+			language: `${userList.language}`,
+		},
+		validationSchema: formValidationSchema,
+		onSubmit: (values) => {
+			editProfile(values);
+		},
+	});
+
 	return (
 		<div className="editprofile-wrapper">
-			<h3>Edit Profile</h3>
-			<form className="editprofile-form">
-				<TextField
-					id="outlined-basic"
-					name="name"
-					label="User Name"
-					variant="outlined"
-					type="text"
-					value={name}
-					onChange={(e) => setName(e.target.value)}
-					style={inputstyle}
-				/>
+			<h3>Hi! {values.name}</h3>
+			<h3>Edit Your Profile</h3>
+			<form className="editprofile-form" onSubmit={handleSubmit} autoComplete="off">
 				<TextField
 					id="outlined-basic"
 					name="email"
 					label="User email"
 					variant="outlined"
 					type="text"
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
+					value={values.email}
+					onChange={handleChange}
+					onBlur={handleBlur}
 					style={inputstyle}
+					error={errors.email && touched.email}
+					helperText={errors.email && touched.email ? errors.email : ''}
 				/>
 				<TextField
 					id="outlined-basic"
@@ -87,9 +88,11 @@ function ShowForm({ userList }) {
 					label="User Info"
 					variant="outlined"
 					type="text"
-					value={about}
-					onChange={(e) => setAbout(e.target.value)}
+					value={values.about}
+					onChange={handleChange}
 					style={inputstyle}
+					error={errors.about && touched.about}
+					helperText={errors.about && touched.about ? errors.about : ''}
 				/>
 				<TextField
 					id="outlined-basic"
@@ -97,8 +100,8 @@ function ShowForm({ userList }) {
 					label="Profile Picture Link"
 					variant="outlined"
 					type="text"
-					value={profilepic}
-					onChange={(e) => SetProfilepic(e.target.value)}
+					value={values.profilepic}
+					onChange={handleChange}
 					style={inputstyle}
 				/>
 				<TextField
@@ -107,8 +110,8 @@ function ShowForm({ userList }) {
 					label="Cover Picture Link"
 					variant="outlined"
 					type="text"
-					value={coverpic}
-					onChange={(e) => SetCoverpic(e.target.value)}
+					value={values.coverpic}
+					onChange={handleChange}
 					style={inputstyle}
 				/>
 				<TextField
@@ -117,9 +120,11 @@ function ShowForm({ userList }) {
 					label="Favourite Food"
 					variant="outlined"
 					type="text"
-					value={food}
-					onChange={(e) => setFood(e.target.value)}
+					value={values.food}
+					onChange={handleChange}
 					style={inputstyle}
+					error={errors.food && touched.food}
+					helperText={errors.food && touched.food ? errors.food : ''}
 				/>
 				<TextField
 					id="outlined-basic"
@@ -127,9 +132,11 @@ function ShowForm({ userList }) {
 					label="Favourite Sport"
 					variant="outlined"
 					type="text"
-					value={sport}
-					onChange={(e) => setSport(e.target.value)}
+					value={values.sport}
+					onChange={handleChange}
 					style={inputstyle}
+					error={errors.sport && touched.sport}
+					helperText={errors.sport && touched.sport ? errors.sport : ''}
 				/>
 				<TextField
 					id="outlined-basic"
@@ -137,19 +144,24 @@ function ShowForm({ userList }) {
 					label="Hobby"
 					variant="outlined"
 					type="text"
-					value={hobby}
-					onChange={(e) => setHobby(e.target.value)}
+					value={values.hobby}
+					onChange={handleChange}
 					style={inputstyle}
+					error={errors.hobby && touched.hobby}
+					helperText={errors.hobby && touched.hobby ? errors.hobby : ''}
 				/>
+
 				<TextField
 					id="outlined-basic"
 					name="location"
 					label="Your Location"
 					variant="outlined"
 					type="text"
-					value={location}
-					onChange={(e) => setLocation(e.target.value)}
+					value={values.location}
+					onChange={handleChange}
 					style={inputstyle}
+					error={errors.location && touched.location}
+					helperText={errors.location && touched.location ? errors.location : ''}
 				/>
 				<TextField
 					id="outlined-basic"
@@ -157,8 +169,8 @@ function ShowForm({ userList }) {
 					label="Known Languages"
 					variant="outlined"
 					type="text"
-					value={language}
-					onChange={(e) => setLanguage(e.target.value)}
+					value={values.language}
+					onChange={handleChange}
 					style={inputstyle}
 				/>
 
@@ -174,9 +186,10 @@ function ShowForm({ userList }) {
 					</Button>
 					<Button
 						variant="outlined"
-						type="button"
+						type="submit"
 						className="updateBtn"
-						onClick={editProfile}
+						color="success"
+						// onClick={editProfile}
 						startIcon={<EditIcon />}
 					>
 						Update
