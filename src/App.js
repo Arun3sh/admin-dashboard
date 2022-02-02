@@ -6,7 +6,7 @@ import { Maincontent } from './components/Maincontent';
 import { Error } from './components/ErrorPage';
 import { Login } from './user components/Login';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { useState, createContext, useEffect } from 'react';
+import { useState, createContext } from 'react';
 import { Forgotpassword } from './user components/Forgotpassword';
 import { Register } from './user components/Register';
 import { Viewprofile } from './user components/Viewprofile';
