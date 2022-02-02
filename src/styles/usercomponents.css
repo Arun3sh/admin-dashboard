@@ -135,7 +135,12 @@
 	align-items: center;
 	justify-content: space-evenly;
 }
-
+.registeruser-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+}
 /* Small Device */
 @media screen and (max-width: 425px) {
 	.profile-pic {
