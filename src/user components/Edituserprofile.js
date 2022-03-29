@@ -1,6 +1,7 @@
 import { TextField, Button } from '@mui/material';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import { authContext } from '../App';
 import EditIcon from '@mui/icons-material/Edit';
 import { Error } from '../components/ErrorPage';
 import { useFormik } from 'formik';
@@ -8,7 +9,7 @@ import * as yup from 'yup';
 
 export function Edituserprofile() {
 	const { id } = useParams();
-
+	const { setUserName } = useContext(authContext);
 	const [userList, setUserList] = useState(null);
 	// To get user data based on loged in id
 	useEffect(() => {
@@ -19,11 +20,11 @@ export function Edituserprofile() {
 			.then((ud) => setUserList(ud));
 	}, []);
 
-	return userList ? <ShowForm userList={userList} /> : <Error />;
+	return userList ? <ShowForm userList={userList} setUserName={setUserName} /> : <Error />;
 }
 
 // Higher order function to edit user profile
-function ShowForm({ userList }) {
+function ShowForm({ userList, setUserName }) {
 	let inputstyle = { marginTop: '20px' };
 	const history = useHistory();
 
@@ -37,6 +38,7 @@ function ShowForm({ userList }) {
 	};
 
 	const formValidationSchema = yup.object({
+		name: yup.string().required('please enter your name'),
 		email: yup.string().email('Invalid email format').required('please enter your email'),
 		about: yup.string().required('please add something about your free spirit'),
 		food: yup.string().required('please add your favourite food'),
@@ -61,6 +63,7 @@ function ShowForm({ userList }) {
 		validationSchema: formValidationSchema,
 		onSubmit: (values) => {
 			editProfile(values);
+			setUserName(values.name);
 		},
 	});
 

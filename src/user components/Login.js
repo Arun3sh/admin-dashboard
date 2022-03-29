@@ -24,7 +24,7 @@ export function Login() {
 				return alert('Incorrect username or password');
 			} else {
 				setLogin(!login);
-				values.email === 'admin@real.com' ? setUserName('admin') : setUserName(null);
+				values.email === 'admin@real.com' ? setUserName('admin') : setUserName(users[0].name);
 				userName === 'admin' ? setUser(true) : setUser(false);
 				setUserId(confirmedData.id);
 				history.push('/');
