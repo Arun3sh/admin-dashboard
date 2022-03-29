@@ -71,16 +71,16 @@ function ShowForm({ userList }) {
 			<form className="editprofile-form" onSubmit={handleSubmit} autoComplete="off">
 				<TextField
 					id="outlined-basic"
-					name="email"
-					label="User email"
+					name="name"
+					label="User Name"
 					variant="outlined"
 					type="text"
-					value={values.email}
+					value={values.name}
 					onChange={handleChange}
 					onBlur={handleBlur}
 					style={inputstyle}
-					error={errors.email && touched.email}
-					helperText={errors.email && touched.email ? errors.email : ''}
+					error={errors.name && touched.name}
+					helperText={errors.name && touched.name ? errors.name : ''}
 				/>
 				<TextField
 					id="outlined-basic"
@@ -189,7 +189,6 @@ function ShowForm({ userList }) {
 						type="submit"
 						className="updateBtn"
 						color="success"
-						// onClick={editProfile}
 						startIcon={<EditIcon />}
 					>
 						Update

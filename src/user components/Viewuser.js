@@ -25,7 +25,7 @@ export function Viewuser() {
 	return (
 		<div>
 			{userValue
-				.filter((e) => e.name !== 'admin')
+				.filter((e) => e.email !== 'admin@real.com')
 				.map(({ id, name, email }) => (
 					<Getallusers
 						id={id}

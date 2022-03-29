@@ -7,39 +7,40 @@ export function Register() {
 	const history = useHistory();
 
 	const register = () => {
-		// To make sure same user name are not taken
-		const checkUserName = (users) => {
-			// To make sure not entering admin and undefined
-			if (values.name.match('admin', 'undefined')) {
-				resetForm();
-				return alert('😀 Nice try');
-			}
+		// To add user
+		const addUser = (users) => {
+			// // To make sure not entering admin and undefined
+			// if (values.name.match('admin', 'undefined')) {
+			// 	resetForm();
+			// 	return alert('😀 Nice try');
+			// }
 
-			// To check if user name already taken
-			const confirmName = users.filter((e) => e.name === values.name);
-			const confirmEmail = users.filter((e) => e.email === values.email);
-			if (confirmName.length > 1) {
-				resetForm();
-				return alert('User name already taken');
-			}
-			if (confirmEmail.length > 1) {
-				resetForm();
-				return alert('Email Id exists click forgot password or try login');
-			}
+			// // To check if user name already taken
+			// const confirmName = users.filter((e) => e.name === values.name);
+			// const confirmEmail = users.filter((e) => e.email === values.email);
+			// if (confirmName.length > 1) {
+			// 	resetForm();
+			// 	return alert('User name already taken');
+			// }
+			// if (confirmEmail.length > 1) {
+			// 	resetForm();
+			// 	return alert('Email Id exists click forgot password or try login');
+			// }
 
 			fetch('https://61988da7164fa60017c230e5.mockapi.io/userdetails/', {
 				method: 'POST',
 				body: JSON.stringify(values),
 				headers: { 'Content-type': 'application/json' },
-			}).then(() => history.push('/login'));
+			}).then(() => history.goBack());
 		};
 
 		// To check for user name
-		fetch('https://61988da7164fa60017c230e5.mockapi.io/userdetails/', {
+		fetch(`https://61988da7164fa60017c230e5.mockapi.io/userdetails?email=${values.email}`, {
 			method: 'GET',
 		})
 			.then((data) => data.json())
-			.then((users) => checkUserName(users));
+			.then((user) => (user.length === 0 ? addUser() : alert('user email already exists')));
+		// .then((users) => checkUserName(users));
 	};
 
 	const formValidationSchema = yup.object({
