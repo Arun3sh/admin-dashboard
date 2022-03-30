@@ -3,8 +3,12 @@ import { Button, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import axios from 'axios';
+import { useContext } from 'react';
+import { authContext } from '../App';
 
 export function Register() {
+	const { login } = useContext(authContext);
+
 	const history = useHistory();
 
 	const register = () => {
@@ -133,9 +137,13 @@ export function Register() {
 			</form>
 
 			<div className="user-already">
-				<Link to="/login" aria-label="login">
-					Already an user? Login
-				</Link>
+				{!login ? (
+					<Link to="/login" aria-label="login">
+						Already an user? Login
+					</Link>
+				) : (
+					''
+				)}
 			</div>
 		</div>
 	);
