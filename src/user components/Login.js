@@ -47,7 +47,7 @@ export function Login() {
 			.required('Min 4 characters'),
 	});
 
-	const { values, handleBlur, handleChange, handleSubmit, errors, touched, resetForm } = useFormik({
+	const { values, handleBlur, handleChange, handleSubmit, errors, touched } = useFormik({
 		initialValues: {
 			email: '',
 			password: '',

@@ -107,13 +107,13 @@ export function SidemenuBar() {
 					<AccordionDetails>
 						<List className="accordian-list">
 							<ListItemButton>
-								<Link to="/login">Login</Link>
+								<li>Logout</li>
 							</ListItemButton>
 							<ListItemButton>
-								<Link to="/login">Register</Link>
+								<li>Register</li>
 							</ListItemButton>
 							<ListItemButton>
-								<Link to="/login">Forgot Password</Link>
+								<li>Forgot Password</li>
 							</ListItemButton>
 						</List>
 					</AccordionDetails>
