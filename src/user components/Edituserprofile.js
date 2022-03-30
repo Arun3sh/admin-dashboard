@@ -6,6 +6,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { Error } from '../components/ErrorPage';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import axios from 'axios';
 
 export function Edituserprofile() {
 	const { id } = useParams();
@@ -13,11 +14,17 @@ export function Edituserprofile() {
 	const [userList, setUserList] = useState(null);
 	// To get user data based on loged in id
 	useEffect(() => {
-		fetch(`https://61988da7164fa60017c230e5.mockapi.io/userdetails/${id}`, {
-			method: 'GET',
-		})
-			.then((data) => data.json())
-			.then((ud) => setUserList(ud));
+		// fetch(`https://61988da7164fa60017c230e5.mockapi.io/userdetails/${id}`, {
+		// 	method: 'GET',
+		// })
+		// 	.then((data) => data.json())
+		// 	.then((ud) => setUserList(ud));
+
+		// Using Axios
+		axios
+			.get(`https://61988da7164fa60017c230e5.mockapi.io/userdetails/${id}`)
+			.then(({ data }) => setUserList(data))
+			.catch((err) => console.log(err));
 	}, []);
 
 	return userList ? <ShowForm userList={userList} setUserName={setUserName} /> : <Error />;
@@ -30,10 +37,17 @@ function ShowForm({ userList, setUserName }) {
 
 	// Function to save the edited data
 	const editProfile = (userData) => {
-		fetch(`https://61988da7164fa60017c230e5.mockapi.io/userdetails/${userList.id}`, {
+		// fetch(`https://61988da7164fa60017c230e5.mockapi.io/userdetails/${userList.id}`, {
+		// 	method: 'PUT',
+		// 	body: JSON.stringify(userData),
+		// 	headers: { 'Content-type': 'application/json' },
+		// }).then(() => history.push(`/profile/${userList.id}`));
+
+		// Using Axios
+		axios({
+			url: `https://61988da7164fa60017c230e5.mockapi.io/userdetails/${userList.id}`,
 			method: 'PUT',
-			body: JSON.stringify(userData),
-			headers: { 'Content-type': 'application/json' },
+			data: userData,
 		}).then(() => history.push(`/profile/${userList.id}`));
 	};
 

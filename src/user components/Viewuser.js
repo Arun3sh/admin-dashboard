@@ -2,35 +2,45 @@ import { Button } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import { Getallusers } from './Getalluser';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 export function Viewuser() {
 	const [userValue, setUserValue] = useState([]);
 	// const userlist = Getalluserdata();
 	const Getalluserdata = () => {
-		fetch('https://61988da7164fa60017c230e5.mockapi.io/userdetails/', {
-			method: 'GET',
-		})
-			.then((data) => data.json())
-			.then((users) => setUserValue(users));
+		// fetch('https://61988da7164fa60017c230e5.mockapi.io/userdetails/', {
+		// 	method: 'GET',
+		// })
+		// 	.then((data) => data.json())
+		// 	.then((users) => setUserValue(users));
 
-		// return userValue;
+		// Using axios
+
+		axios
+			.get('https://61988da7164fa60017c230e5.mockapi.io/userdetails/')
+			.then(({ data }) => setUserValue(data));
 	};
 	useEffect(Getalluserdata, []);
 	const deleteUser = (id) => {
-		fetch(`https://61988da7164fa60017c230e5.mockapi.io/userdetails/${id}`, {
-			method: 'DELETE',
-		}).then(() => Getalluserdata());
+		// fetch(`https://61988da7164fa60017c230e5.mockapi.io/userdetails/${id}`, {
+		// 	method: 'DELETE',
+		// }).then(() => Getalluserdata());
+
+		axios
+			.delete(`https://61988da7164fa60017c230e5.mockapi.io/userdetails/${id}`)
+			.then(() => Getalluserdata());
 	};
 	const history = useHistory();
 	return (
 		<div>
 			{userValue
 				.filter((e) => e.email !== 'admin@real.com')
-				.map(({ id, name, email }) => (
+				.map(({ id, name, email }, index) => (
 					<Getallusers
 						id={id}
 						name={name}
 						email={email}
+						key={index}
 						editButton={
 							<Button
 								type="button"

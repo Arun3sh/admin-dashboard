@@ -2,6 +2,7 @@ import { useHistory, Link } from 'react-router-dom';
 import { Button, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import axios from 'axios';
 
 export function Register() {
 	const history = useHistory();
@@ -9,38 +10,33 @@ export function Register() {
 	const register = () => {
 		// To add user
 		const addUser = (users) => {
-			// // To make sure not entering admin and undefined
-			// if (values.name.match('admin', 'undefined')) {
-			// 	resetForm();
-			// 	return alert('😀 Nice try');
-			// }
+			// fetch('https://61988da7164fa60017c230e5.mockapi.io/userdetails/', {
+			// 	method: 'POST',
+			// 	body: JSON.stringify(values),
+			// 	headers: { 'Content-type': 'application/json' },
+			// }).then(() => history.goBack());
 
-			// // To check if user name already taken
-			// const confirmName = users.filter((e) => e.name === values.name);
-			// const confirmEmail = users.filter((e) => e.email === values.email);
-			// if (confirmName.length > 1) {
-			// 	resetForm();
-			// 	return alert('User name already taken');
-			// }
-			// if (confirmEmail.length > 1) {
-			// 	resetForm();
-			// 	return alert('Email Id exists click forgot password or try login');
-			// }
-
-			fetch('https://61988da7164fa60017c230e5.mockapi.io/userdetails/', {
+			axios({
+				url: 'https://61988da7164fa60017c230e5.mockapi.io/userdetails/',
 				method: 'POST',
-				body: JSON.stringify(values),
-				headers: { 'Content-type': 'application/json' },
-			}).then(() => history.goBack());
+				data: values,
+			})
+				.then(() => history.goBack())
+				.catch((err) => alert(err));
 		};
 
 		// To check for user name
-		fetch(`https://61988da7164fa60017c230e5.mockapi.io/userdetails?email=${values.email}`, {
-			method: 'GET',
-		})
-			.then((data) => data.json())
-			.then((user) => (user.length === 0 ? addUser() : alert('user email already exists')));
-		// .then((users) => checkUserName(users));
+		// Using axios
+		axios
+			.get(`https://61988da7164fa60017c230e5.mockapi.io/userdetails?email=${values.email}`)
+			.then(({ data }) => (data.length === 0 ? addUser() : alert('user email already exists')));
+
+		//Using fetch method
+		// fetch(`https://61988da7164fa60017c230e5.mockapi.io/userdetails?email=${values.email}`, {
+		// 	method: 'GET',
+		// })
+		// 	.then((data) => data.json())
+		// 	.then((user) => (user.length === 0 ? addUser() : alert('user email already exists')));
 	};
 
 	const formValidationSchema = yup.object({
@@ -59,7 +55,7 @@ export function Register() {
 			.required('Please confirm the password')
 			.oneOf([yup.ref('password')], 'Passwords do not match'),
 	});
-	const { values, handleBlur, handleChange, handleSubmit, errors, touched, resetForm } = useFormik({
+	const { values, handleBlur, handleChange, handleSubmit, errors, touched } = useFormik({
 		initialValues: {
 			name: '',
 			email: '',
@@ -82,7 +78,7 @@ export function Register() {
 			<h3>Create an Account</h3>
 			<form className="registeruser-form" onSubmit={handleSubmit} autoComplete="off">
 				<TextField
-					id="outlined-basic"
+					id="name"
 					name="name"
 					value={values.name}
 					label="User Name"
@@ -94,7 +90,7 @@ export function Register() {
 					helperText={errors.name && touched.name ? errors.name : ''}
 				/>
 				<TextField
-					id="outlined-basic"
+					id="email"
 					name="email"
 					value={values.email}
 					label="Enter email id"
@@ -106,7 +102,7 @@ export function Register() {
 					helperText={errors.email && touched.email ? errors.email : ''}
 				/>
 				<TextField
-					id="outlined-basic"
+					id="password"
 					name="password"
 					value={values.password}
 					type="password"
@@ -119,7 +115,7 @@ export function Register() {
 					helperText={errors.password && touched.password ? errors.password : ''}
 				/>
 				<TextField
-					id="outlined-basic"
+					id="cpassword"
 					name="cpassword"
 					value={values.cpassword}
 					type="password"
